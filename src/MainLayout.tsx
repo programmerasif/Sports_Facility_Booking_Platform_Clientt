@@ -1,13 +1,16 @@
 import { Outlet } from "react-router-dom";
 import Navbr from "./pages/NavBr/Navbr";
+import Footer from "./pages/Footer/Footer";
 
 
 const MainLayout = () => {
     return (
-        <div>
+        <div className="bg-gray-50">
             <Navbr />
+            <div className="">
             <Outlet />
-            <h5>This is footer</h5>
+            </div>
+            <Footer />
         </div>
     );
 };

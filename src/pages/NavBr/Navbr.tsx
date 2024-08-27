@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import logo from "../../assets/logo/logo.png";
 
 const Navbar = () => {
@@ -9,8 +9,13 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
+  const location = useLocation();
+  const locationPath = location.pathname;
+  const isHomePage = locationPath == "/";
+  
+  
   return (
-    <nav className="absolute w-full py-6">
+    <nav className={`absolute w-full  z-50 ${!isHomePage ? 'bg-[#12143D] py-4': 'py-6'}`}>
       <div className="mx-auto px-4 sm:px-8 md:px-10 lg:px-20 xl:px-32">
         <div className="flex justify-between h-16">
           {/* Logo */}
@@ -43,14 +48,14 @@ const Navbar = () => {
               About
             </NavLink>
             <NavLink
-              to="/services"
+              to="/facality"
               className={({ isActive }) =>
                 isActive
                   ? "text-[#F7A400] font-bold transition duration-300"
                   : "text-gray-50 hover:text-[#F7A400] transition duration-300"
               }
             >
-              Services
+              Facality
             </NavLink>
             <NavLink
               to="/contact"
@@ -62,16 +67,28 @@ const Navbar = () => {
             >
               Contact
             </NavLink>
+            <div className="flex justify-center items-center gap-4">
+            <NavLink
+              to="/register"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-gray-50 px-6 py-1 rounded-md border border-[#F7A400] transition duration-300 font-bold"
+                  : "text-gray-50 px-6 py-1 rounded-md border border-[#F7A400] transition duration-300"
+              }
+            >
+              Register
+            </NavLink>
             <NavLink
               to="/login"
               className={({ isActive }) =>
                 isActive
-                  ? "text-gray-50 px-6 py-1 rounded-md bg-[#F7A400] transition duration-300 font-bold"
-                  : "text-gray-50 px-6 py-1 rounded-md bg-[#F7A400] transition duration-300"
+                  ? "text-gray-50 px-6 py-1 rounded-md border border-[#F7A400] transition duration-300 font-bold"
+                  : "text-gray-50 px-6 py-1 rounded-md border border-[#F7A400] transition duration-300"
               }
             >
               Login
             </NavLink>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -162,14 +179,14 @@ const Navbar = () => {
             About
           </NavLink>
           <NavLink
-            to="/services"
+            to="/facality"
             className={({ isActive }) =>
               isActive
                 ? "text-[#F7A400] font-bold bg-gray-50 p-2 rounded transition duration-300"
                 : "text-gray-50 hover:bg-gray-50 hover:text-[#F7A400] p-2 rounded transition duration-300"
             }
           >
-            Services
+            Facality
           </NavLink>
           <NavLink
             to="/contact"

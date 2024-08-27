@@ -82,12 +82,12 @@ export const Card = ({
   return (
     <div
       className={cn(
-        "rounded-2xl h-full w-full p-4 overflow-hidden bg-[#DEF8DF]  border-transparent dark:border-white/[0.2] group-hover:border-slate-700 relative z-20",
+        "rounded-2xl h-full w-full  overflow-hidden bg-[#E8EEFA] border-transparent dark:border-white/[0.2] group-hover:border-slate-700 relative z-20",
         className
       )}
     >
       <div className="relative z-50">
-        <div className="p-4">{children}</div>
+        <div className="px-4">{children}</div>
       </div>
     </div>
   );
@@ -99,13 +99,12 @@ export const CardTitle = ({
   className?: string;
   children: ReactNode[];
 }) => {
-  console.log(children[1]);
   const imageSrc = typeof children[1] === "string" ? children[1] : undefined;
   return (
     <h4 className={cn("text-gray-900 font-bold tracking-wide mt-4", className)}>
-      <div className="flex justify-center items-center flex-col gap-4">
-        <span><img src={imageSrc} alt=""  className="w-16"/></span>
-        <span>{children[0]}</span>
+      <div className="flex justify-start items-start flex-col gap-2">
+        <span><img src={imageSrc} alt=""  className=" rounded-md"/></span>
+        <span className="font-bold text-[18px]">{children[0]}</span>
       </div>
     </h4>
   );
@@ -121,7 +120,7 @@ export const CardDescription = ({
   return (
     <p
       className={cn(
-        "mt-8 text-zinc-500 tracking-wide leading-relaxed text-sm",
+        "mt-2 text-zinc-500 tracking-wide leading-relaxed text-sm pb-5",
         className
       )}
     >

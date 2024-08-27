@@ -1,4 +1,4 @@
-import avater from "../../assets/avater-two.png";
+import avater from "../../assets/avater.png";
 
 const Banner = () => {
   return (
