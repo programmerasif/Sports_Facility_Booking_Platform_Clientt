@@ -9,15 +9,15 @@ const Dashboardheader = () => {
     console.log(user);
     
     return (
-        <div className="bg-gray-50 flex justify-between items-center w-full shadow-xl  px-4">
-        <div className="py-6">
+    <div className="bg-gray-50 flex justify-between items-center w-full shadow-xl py-1 md:py-0 px-2 md:px-4">
+        <div className="py-6 hidden md:block">
             <div className="font-semibold">Today</div>
             <div className="text-sm">{formattedDate}</div>
         </div>
         <div className="bg-gray-200 flex justify-center items-center gap-5 rounded-full px-1 py-1">
-            <NavLink to={'/dashoard'}><div className="rounded-full p-3 font-semibold bg-white cursor-pointer">Dashboard</div></NavLink>
+            <NavLink to={'/dashoard'}><div className="rounded-full p-1 md:p-3 font-semibold bg-white cursor-pointer">Dashboard</div></NavLink>
             
-           <NavLink to={'/'}> <div className="rounded-full p-3 font-semibold cursor-pointer ">Websit</div></NavLink>
+           <NavLink to={'/'}> <div className="rounded-full p-1 md:p-3 font-semibold cursor-pointer ">Websit</div></NavLink>
         </div>
         <div className="flex justify-center items-center gap-5">
         <div>
@@ -26,7 +26,7 @@ const Dashboardheader = () => {
         <span className="text-sm text-[#12143D]"> {user[0].role =='admin' ? "Authority" : "Customer"} </span>
         </div>
         </div> 
-        <div><img src={'https://i.ibb.co/fnfBTSN/Untitled-design-1.png'} alt="" className="w-12 rounded-full ring" /></div> 
+        <div><img src={'https://i.ibb.co/fnfBTSN/Untitled-design-1.png'} alt="" className="w-8 md:w-12 rounded-full ring" /></div> 
         </div>
         </div>
     );

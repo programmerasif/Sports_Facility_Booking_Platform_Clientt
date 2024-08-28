@@ -4,9 +4,10 @@ import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
 import DashBoardMenu from "@/Const/Dashboardlinks";
 import { DashboardLogo } from "@/components/ui/DashboardLogo";
 import DashboardInterface from "../DashboardInterface/DashboardInterface";
+import { useAppSelector } from "@/redux/api/hook";
 
 const MainDashboard= () => {
-  
+  const {user} = useAppSelector(state => state?.user);
   const [open, setOpen] = useState(false);
 
   
@@ -33,7 +34,7 @@ const MainDashboard= () => {
           <div>
             <SidebarLink
               link={{
-                label: "Manu Arora",
+                label: `${user[0].name}`,
                 href: "#",
                 icon: (
                   <img

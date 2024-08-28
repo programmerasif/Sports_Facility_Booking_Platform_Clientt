@@ -40,7 +40,7 @@ export const CardStack = ({
 
     const cleanupInterval = startFlipping();
 
-    return cleanupInterval; // Clean up interval when the component unmounts
+    return cleanupInterval; 
   }, [items]);
 
   return (
@@ -48,28 +48,28 @@ export const CardStack = ({
       {cards.map((card, index) => (
         <motion.div
           key={card.id}
-          className="absolute dark:bg-black bg-white h-60 w-56 md:h-60 p-8 md:w-72 lg:w-[30rem] rounded-3xl  shadow-xl border border-neutral-200 dark:border-white/[0.1] shadow-black/[0.1] dark:shadow-white/[0.05] flex flex-col justify-between"
+          className="absolute  bg-[#EBF5FB] h-60 w-56 md:h-60 p-8 md:w-72 lg:w-[30rem] rounded-3xl  shadow-xl border border-neutral-200 dark:border-white/[0.1] shadow-black/[0.1] dark:shadow-white/[0.05] flex flex-col justify-between"
           style={{
-            transformOrigin: "top left", // Transform origin is at top left
+            transformOrigin: "top left",
           }}
           animate={{
-            top: index * offset,   // Move background cards down and right
-            left: index * offset,  // Move background cards down and right
-            scale: 1 - index * scaleFactor, // Scale background cards
-            zIndex: cards.length - index, // Ensure the active card is on top
+            top: index * offset,   
+            left: index * offset,  
+            scale: 1 - index * scaleFactor,
+            zIndex: cards.length - index, 
           }}
         >
-          <div className="font-normal text-neutral-700 dark:text-neutral-200">
+          <div className="font-normal text-neutral-900 dark:text-neutral-200">
             {card.content}
           </div>
           <div>
-            <p className="text-neutral-500 font-medium dark:text-white hidden md:block">
+            <p className="text-[#4a50c9] font-medium hidden md:block">
               {card.name}
             </p>
             <p className="text-neutral-400 font-normal dark:text-neutral-200 ">
               {card.designation}
             </p>
-            <img src={card?.image} alt="avaer"  className="absolute w-16 ring-2 rounded-full -top-10 -left-10"/>
+            <img src={card?.image} alt="avaer"  className="absolute w-16 ring-2 rounded-full -top-8 -left-8"/>
           </div>
         </motion.div>
       ))}

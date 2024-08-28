@@ -1,51 +1,6 @@
 import { CardStack } from "@/components/ui/card-stack";
+import { CARDS } from "@/Const/TestmonialData";
 import { useState } from "react";
-
-
-const CARDS = [
-  {
-    id: 0,
-    name: "Manu Arora",
-    designation: "Senior Software Engineer",
-    image:'https://i.ibb.co/TrMCHtg/person7.jpg',
-    content: (
-      <p>
-        These cards are amazing, I want to use them in my
-        project. Framer motion is a godsend ngl tbh fam 🙏
-      </p>
-    ),
-  },
-  {
-    id: 1,
-    name: "Elon Musk",
-    designation: "Senior Shitposter",
-    image:'https://i.ibb.co/7td549f/pperson6.jpg',
-    content: (
-      <p>
-        I don't like this Twitter thing,{" "}
-        deleting it right away because yolo. Instead, I
-        would like to call it X.com so that it can easily
-        be confused with adult sites.
-      </p>
-    ),
-  },
-  {
-    id: 2,
-    name: "Tyler Durden",
-    designation: "Manager Project Mayhem",
-    image:'https://i.ibb.co/w67FPNd/person1.jpg',
-    content: (
-      <p>
-        The first rule of Fight Club is that you do not
-        talk about fight club. The second rule of{" "}
-        Fight Club is that you DO NOT TALK about fight
-        club.
-      </p>
-    ),
-  },
-  // Add more cards as needed
-];
-
 
 
 const Testmonial = () => {
@@ -54,7 +9,7 @@ const Testmonial = () => {
   const handleNextClick = () => {
     setCards((prevCards) => {
       const newArray = [...prevCards];
-      newArray.unshift(newArray.pop()!); // Move the last element to the front
+      newArray.unshift(newArray.pop()!); 
       return newArray;
     });
   };
@@ -62,7 +17,7 @@ const Testmonial = () => {
   const handlePrevClick = () => {
     setCards((prevCards) => {
       const newArray = [...prevCards];
-      newArray.push(newArray.shift()!); // Move the first element to the back
+      newArray.push(newArray.shift()!); 
       return newArray;
     });
   };

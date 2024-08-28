@@ -1,5 +1,5 @@
 import Banner from "../Banner/Banner";
-import Testmonial from "../card/Testmonial";
+import Testmonial from "../Testmonial/Testmonial";
 
 import HowItworks from "../HowItworks/HowItworks";
 

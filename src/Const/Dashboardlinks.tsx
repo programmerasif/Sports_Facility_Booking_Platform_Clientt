@@ -1,4 +1,4 @@
-import {  IconBrandTabler } from "@tabler/icons-react";
+import {  IconBrandTabler, IconUserBolt } from "@tabler/icons-react";
 
 const DashBoardMenu = [
   {
@@ -6,10 +6,23 @@ const DashBoardMenu = [
     href: "/",
     icon: <IconBrandTabler className="text-white h-5 w-5 flex-shrink-0" />,
   },
-
+  {
+    label: "Manage user",
+    href: "manage-user",
+    icon: (
+      <IconUserBolt className="text-white h-5 w-5 flex-shrink-0" />
+    ),
+  },
+  {
+    label: "Create Admin",
+    href: "create-admin",
+    icon: (
+      <IconUserBolt className="text-white h-5 w-5 flex-shrink-0" />
+    ),
+  },
   {
     label: "Facality Management",
-    href: "#",
+    href: "facality-management",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +46,7 @@ const DashBoardMenu = [
   },
   {
     label: "Booking Management",
-    href: "#",
+    href: "booking-management",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"

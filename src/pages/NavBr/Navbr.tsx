@@ -42,7 +42,17 @@ const Navbar = () => {
               Home
             </NavLink>
             <NavLink
-              to="/about"
+              to="/contsct"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-[#F7A400] font-bold transition duration-300"
+                  : "text-gray-50 hover:text-[#F7A400] transition duration-300"
+              }
+            >
+              Contsct
+            </NavLink>
+            <NavLink
+              to="/about-us"
               className={({ isActive }) =>
                 isActive
                   ? "text-[#F7A400] font-bold transition duration-300"
@@ -61,16 +71,7 @@ const Navbar = () => {
             >
               Facality
             </NavLink>
-            <NavLink
-              to="/contact"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-[#F7A400] font-bold transition duration-300"
-                  : "text-gray-50 hover:text-[#F7A400] transition duration-300"
-              }
-            >
-              Contact
-            </NavLink>
+            
            {
             user.length ? 
             <NavLink

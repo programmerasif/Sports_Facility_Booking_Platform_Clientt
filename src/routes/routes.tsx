@@ -5,8 +5,14 @@ import Home from "../pages/Home/Home";
 import { createBrowserRouter } from "react-router-dom";
 import Register from "@/pages/Register/Register";
 import Login from "@/pages/Login/Login";
-import Text from "@/pages/Text";
 import MainDashboard from "@/pages/Dashboard/MainDashboard";
+import BookingManagement from "@/pages/BookingManagement/BookingManagement";
+import FacalityManagement from "@/pages/FacalityManagement/FacalityManagement";
+import ManageUser from "@/pages/ManageUser/ManageUser";
+import CreateAdmin from "@/pages/CreateAdmin/CreatAdmin";
+import Contact from "@/pages/Contact/Contact";
+import AboutUs from "@/pages/AboutUs/AboutUs";
+
 
 const routs = createBrowserRouter([
     {
@@ -20,6 +26,14 @@ const routs = createBrowserRouter([
             {
                 path:'/facality',
                 element:<Facality />
+            },
+            {
+                path:'/contsct',
+                element:<Contact />
+            },
+            {
+                path:'/about-us',
+                element:<AboutUs />
             },
             {
                 path:'/login',
@@ -36,8 +50,20 @@ const routs = createBrowserRouter([
         element: <MainDashboard />,
         children:[
             {
-                path:'test',
-                element:<Text/>
+                path:'manage-user',
+                element:<ManageUser/>
+            },
+            {
+                path:'booking-management',
+                element:<BookingManagement/>
+            },
+            {
+                path:'facality-management',
+                element:<FacalityManagement/>
+            },
+            {
+                path:'create-admin',
+                element:<CreateAdmin />
             },
         ]
     }

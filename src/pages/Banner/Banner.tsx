@@ -2,7 +2,8 @@ import avater from "../../assets/avater.png";
 
 const Banner = () => {
   return (
-    <div className=" bg-[#12143D] text-gray-50 flex justify-center items-center mx-auto px-4 sm:px-8 md:px-10 lg:px-20 xl:px-32 ">
+    // <div className=" bg-gradient-to-r from-[#2d3298] to-[#222565] text-gray-50 flex justify-center items-center mx-auto px-4 sm:px-8 md:px-10 lg:px-20 xl:px-32 ">
+     <div className=" bg-[#12143D] text-gray-50 flex justify-center items-center mx-auto px-4 sm:px-8 md:px-10 lg:px-20 xl:px-32 "> *
       <div className="w-full flex justify-between items-center mt-32 relative flex-col-reverse md:flex-row pb-10">
         <div className=" w-full md:w-[50%]">
           <div className="flex justify-start items-start flex-col gap-5">

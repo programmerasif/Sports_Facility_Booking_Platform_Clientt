@@ -43,7 +43,6 @@ const Login: React.FC = () => {
       }
       dispatch(setUserInfo(user))
      
-      console.log(res.data);
     } catch (error) {
       console.error(error);
     }

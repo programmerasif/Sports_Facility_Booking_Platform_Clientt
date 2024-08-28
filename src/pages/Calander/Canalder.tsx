@@ -54,7 +54,7 @@ const Calendar: React.FC = () => {
         </div>
       );
     }
-    return <div className="days-row grid grid-cols-7 mb-4">{days}</div>;
+    return <div className="days-row grid grid-cols-7 mb-4 text-[#4a50c9]">{days}</div>;
   };
 
   const renderCells = () => {
@@ -84,7 +84,7 @@ const Calendar: React.FC = () => {
             key={day.toString()}
             onClick={() => console.log(cloneDay)}
           >
-            <span className="number">{formattedDate}</span>
+            <span className="number ">{formattedDate}</span>
           </div>
         );
         day = addDays(day, 1);
@@ -100,7 +100,7 @@ const Calendar: React.FC = () => {
   };
 
   return (
-    <div className="calendar bg-[#ffffffdf] p-4 rounded-md shadow-md w-[100%]">
+    <div className="calendar bg-[#EBF5FB] p-4 rounded-md shadow-md w-[100%]">
       {renderHeader()}
       {renderDays()}
       {renderCells()}
