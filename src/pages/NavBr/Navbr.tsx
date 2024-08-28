@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import logo from "../../assets/logo/logo.png";
+import { useAppSelector } from "@/redux/api/hook";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const {user} = useAppSelector(state => state?.user);
+
+  
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -67,7 +71,15 @@ const Navbar = () => {
             >
               Contact
             </NavLink>
-            <div className="flex justify-center items-center gap-4">
+           {
+            user.length ? 
+            <NavLink
+            to="/dashoard"
+            className='text-white px-6 py-2 rounded-md bg-[#F7A400] transition duration-300 font-bold'
+          >
+            Dashboard
+          </NavLink>
+            :  <div className="flex justify-center items-center gap-4">
             <NavLink
               to="/register"
               className={({ isActive }) =>
@@ -89,6 +101,7 @@ const Navbar = () => {
               Login
             </NavLink>
             </div>
+           }
           </div>
 
           {/* Mobile Menu Button */}

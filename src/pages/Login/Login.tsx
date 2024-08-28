@@ -3,15 +3,50 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { BottomGradient } from "@/components/ui/BottomGradient";
 import { LabelInputContainer } from "@/components/ui/LabelInputContainer";
-import login from '../../assets/login2.png';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import login from "../../assets/login2.png";
+import { useForm, SubmitHandler } from "react-hook-form";
 import { FormValues } from "@/types/types";
+import { useLoginMutation } from "@/redux/feature/auth/authApi";
+import { NavLink } from "react-router-dom";
+import { setUserInfo } from "@/redux/feature/userInfo/userInfoSlice";
+import { useAppDispatch } from "@/redux/api/hook";
+
 
 const Login: React.FC = () => {
-  const { register, handleSubmit,watch, formState: { errors } } = useForm<FormValues>();
+  const [signIn] = useLoginMutation();
+  const dispatch = useAppDispatch();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>();
 
-  const onSubmit: SubmitHandler<FormValues> = data => {
-    console.log(data);
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+
+    try {
+      
+      const userData = {
+        email: data?.email,
+        password: data?.password,
+      };
+      const res = await signIn(userData);
+      const token = res?.data?.token;
+      const user = {
+        _id: res?.data?.data?._id,
+          name: res?.data?.data?.name,
+          email:res?.data?.data?.email,
+          role:res?.data?.data?.role,
+          image:res?.data?.data?.image,
+          phone:res?.data?.data?.phone,
+          address:res?.data?.data?.address,
+          token:token
+      }
+      dispatch(setUserInfo(user))
+     
+      console.log(res.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -26,86 +61,55 @@ const Login: React.FC = () => {
           </p>
 
           <form className="my-8" onSubmit={handleSubmit(onSubmit)}>
-            <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
-              <LabelInputContainer>
-                <Label htmlFor="firstname">First name</Label>
-                <Input
-                  id="firstname"
-                  placeholder="Asif"
-                  type="text"
-                  {...register("firstname", { required: "First name is required" })}
-                />
-                {errors.firstname && <p className="text-red-600">{errors.firstname.message}</p>}
-              </LabelInputContainer>
-              <LabelInputContainer>
-                <Label htmlFor="lastname">Last name</Label>
-                <Input
-                  id="lastname"
-                  placeholder="Khan"
-                  type="text"
-                  {...register("lastname", { required: "Last name is required" })}
-                />
-                {errors.lastname && <p className="text-red-600">{errors.lastname.message}</p>}
-              </LabelInputContainer>
-            </div>
             <LabelInputContainer className="mb-4">
               <Label htmlFor="email">Email Address</Label>
               <Input
                 id="email"
                 placeholder="asifkhan.dev2@gmail.com"
                 type="email"
-                {...register("email", { 
+                {...register("email", {
                   pattern: {
                     value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-                    message: "Invalid email address"
-                  }
+                    message: "Invalid email address",
+                  },
                 })}
               />
-              {errors.email && <p className="text-red-600">{errors.email.message}</p>}
+              {errors.email && (
+                <p className="text-red-600">{errors.email.message}</p>
+              )}
             </LabelInputContainer>
+
             <LabelInputContainer className="mb-4">
               <Label htmlFor="password">Password</Label>
               <Input
                 id="password"
                 placeholder="••••••••"
                 type="password"
-                {...register("password", { 
+                {...register("password", {
                   required: "Password is required",
-                  minLength: { value: 8, message: "Password must be at least 8 characters" }
+                  minLength: {
+                    value: 8,
+                    message: "Password must be at least 8 characters",
+                  },
                 })}
               />
-              {errors.password && <p className="text-red-600">{errors.password.message}</p>}
-            </LabelInputContainer>
-            <LabelInputContainer className="mb-8">
-              <Label htmlFor="confirmPassword">Confirm password</Label>
-              <Input
-                id="confirmPassword"
-                placeholder="••••••••"
-                type="password"
-                {...register("confirmPassword", { 
-                  required: "Confirm password is required",
-                  validate: value => value === watch('password') || "Passwords do not match"
-                })}
-              />
-              {errors.confirmPassword && <p className="text-red-600">{errors.confirmPassword.message}</p>}
-            </LabelInputContainer>
-            <LabelInputContainer className="mb-8">
-              <Label htmlFor="profileImage">Profile Image</Label>
-              <Input id="profileImage" type="file" accept="image/*" {...register("profileImage", { required: "profileImage is required" })} />
-              {errors.profileImage && <p className="text-red-600">{errors.profileImage.message}</p>}
+              {errors.password && (
+                <p className="text-red-600">{errors.password.message}</p>
+              )}
             </LabelInputContainer>
 
             <button
               className="bg-gradient-to-br relative group/btn bg-[#24287a] w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
               type="submit"
             >
-              Sign up &rarr;
+              Sign in &rarr;
               <BottomGradient />
-            </button> 
+            </button>
           </form>
+          <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">Dont have an Account? <NavLink to='/register' className="text-blue-500 underline">Refister</NavLink></p>
         </div>
       </div>
-      
+
       <div className="w-[50%] bg-[#12143d] text-white flex justify-center items-center pt-16">
         <div className="flex justify-between items-center flex-col gap-5 w">
           <img src={login} alt="" className="w-[60%] xl:w-[50%]" />

@@ -1,0 +1,37 @@
+.calendar {
+   
+    margin: auto;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .header h2 {
+    font-size: 1.5rem;
+  }
+  
+  .day-name {
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .cell {
+    padding: 5px;
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .cell.disabled {
+    color: #ccc;
+  }
+  
+  .cell.selected {
+
+    color: #fff;
+    border-radius: 10%;
+   background: #94bfed;
+    border-radius: 100%;
+
+  }
+  
+  .cell .number {
+    font-size: .8rem;
+  }

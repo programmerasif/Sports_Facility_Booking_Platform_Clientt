@@ -5,6 +5,8 @@ import Home from "../pages/Home/Home";
 import { createBrowserRouter } from "react-router-dom";
 import Register from "@/pages/Register/Register";
 import Login from "@/pages/Login/Login";
+import Text from "@/pages/Text";
+import MainDashboard from "@/pages/Dashboard/MainDashboard";
 
 const routs = createBrowserRouter([
     {
@@ -26,6 +28,16 @@ const routs = createBrowserRouter([
             {
                 path:'/register',
                 element:<Register />
+            },
+        ]
+    },
+    {
+        path: '/dashoard',
+        element: <MainDashboard />,
+        children:[
+            {
+                path:'test',
+                element:<Text/>
             },
         ]
     }

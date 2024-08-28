@@ -24,4 +24,17 @@ export interface FormValues {
   password: string;
   confirmPassword: string;
   profileImage: FileList; 
+  phone:number
 }
+export interface TUser {
+  name: string,
+  email:string,
+  role:string,
+  image:string,
+  phone:string,
+  address?:string,
+  token:string
+}
+export type TInitialState = {
+  user: TUser[];
+};

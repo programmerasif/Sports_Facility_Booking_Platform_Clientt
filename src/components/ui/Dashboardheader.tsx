@@ -1,0 +1,35 @@
+import { useAppSelector } from "@/redux/api/hook";
+import { NavLink } from "react-router-dom";
+
+const Dashboardheader = () => {
+    const {user} = useAppSelector(state => state?.user);
+    const today = new Date();
+  
+    const formattedDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+    console.log(user);
+    
+    return (
+        <div className="bg-gray-50 flex justify-between items-center w-full shadow-xl  px-4">
+        <div className="py-6">
+            <div className="font-semibold">Today</div>
+            <div className="text-sm">{formattedDate}</div>
+        </div>
+        <div className="bg-gray-200 flex justify-center items-center gap-5 rounded-full px-1 py-1">
+            <NavLink to={'/dashoard'}><div className="rounded-full p-3 font-semibold bg-white cursor-pointer">Dashboard</div></NavLink>
+            
+           <NavLink to={'/'}> <div className="rounded-full p-3 font-semibold cursor-pointer ">Websit</div></NavLink>
+        </div>
+        <div className="flex justify-center items-center gap-5">
+        <div>
+        <div className="flex flex-col">
+        <span className="font-semibold"> {user[0].name.slice(0,12)} </span>
+        <span className="text-sm text-[#12143D]"> {user[0].role =='admin' ? "Authority" : "Customer"} </span>
+        </div>
+        </div> 
+        <div><img src={'https://i.ibb.co/fnfBTSN/Untitled-design-1.png'} alt="" className="w-12 rounded-full ring" /></div> 
+        </div>
+        </div>
+    );
+};
+
+export default Dashboardheader;
