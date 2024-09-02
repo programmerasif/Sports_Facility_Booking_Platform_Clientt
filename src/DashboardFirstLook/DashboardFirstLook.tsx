@@ -5,12 +5,7 @@ import CommonFacality from "@/ComoneComponent/CommonFacality";
 
 const DashboardFirstLook = () => {
     const today = new Date();
-    const { data } = useGetProductsQuery([
-        { name: "page", value: "1" },
-        { name: "limit", value: "4" },
-        { name: "sort", value: 'name' }, 
-         
-      ]);
+    const { data } = useGetProductsQuery(undefined);
 
   const formattedDate = today.toLocaleDateString('en-US', {
     weekday: 'short', 

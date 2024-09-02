@@ -4,12 +4,7 @@ import CommonFacality from "@/ComoneComponent/CommonFacality";
 // ];
 
 const TopFacalitys = () => {
-  const { data } = useGetProductsQuery([
-    { name: "page", value: "1" },
-    { name: "limit", value: "8" },
-    { name: "sort", value: 'name' }, 
-     
-  ]);
+  const { data } = useGetProductsQuery(undefined);
  
 
   return (
