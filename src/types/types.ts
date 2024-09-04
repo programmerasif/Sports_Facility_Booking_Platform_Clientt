@@ -25,6 +25,7 @@ export interface FormValues {
   confirmPassword: string;
   profileImage: FileList; 
   phone:number
+  address:string
 }
 export interface TUser {
   name: string,

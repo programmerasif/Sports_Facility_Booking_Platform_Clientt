@@ -9,12 +9,16 @@ import Lottie from "lottie-react";
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { FormValues } from "@/types/types";
 import { useCreatUserMutation } from "@/redux/feature/auth/authApi";
-import { NavLink} from "react-router-dom";
+import { NavLink, useNavigate} from "react-router-dom";
 import login from '../../assets/login.json'
+import { useAppDispatch } from "@/redux/api/hook";
+import { setUserInfo } from "@/redux/feature/userInfo/userInfoSlice";
 
 const Register: React.FC = () => {
     const [creteUser] = useCreatUserMutation()
   const { register, handleSubmit,watch, formState: { errors } } = useForm<FormValues>();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   
 
@@ -56,10 +60,24 @@ const Register: React.FC = () => {
             password: data?.password,
             phone: data?.phone,
             role: 'user',
-            image: hostedImage
+            image: hostedImage,
+            address:data?.address
         }
         const res = await creteUser(userData)
         console.log(res);
+        const token = res?.data?.token;
+      const user = {
+        _id: res?.data?.data?._id,
+          name: res?.data?.data?.name,
+          email:res?.data?.data?.email,
+          role:res?.data?.data?.role,
+          image:res?.data?.data?.image,
+          phone:res?.data?.data?.phone,
+          address:res?.data?.data?.address,
+          token:token
+      }
+      navigate('/');
+      dispatch(setUserInfo(user))
         
 
       }
@@ -152,7 +170,13 @@ const Register: React.FC = () => {
               {errors.confirmPassword && <p className="text-red-600">{errors.confirmPassword.message}</p>}
             </LabelInputContainer>
             </div>
-            <LabelInputContainer className="mb-4">
+            <LabelInputContainer className="mb-8">
+              <Label htmlFor="profileImage">Profile Image</Label>
+              <Input id="profileImage" type="file" accept="image/*" {...register("profileImage", { required: "profileImage is required" })} />
+              {errors.profileImage && <p className="text-red-600">{errors.profileImage.message}</p>}
+            </LabelInputContainer>
+            <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
+             <LabelInputContainer className="mb-4">
               <Label htmlFor="password">Phone Number</Label>
               <Input
                 id="phone"
@@ -164,13 +188,18 @@ const Register: React.FC = () => {
                 })}
               />
               {errors.phone && <p className="text-red-600">{errors.phone.message}</p>}
-            </LabelInputContainer>
-            <LabelInputContainer className="mb-8">
-              <Label htmlFor="profileImage">Profile Image</Label>
-              <Input id="profileImage" type="file" accept="image/*" {...register("profileImage", { required: "profileImage is required" })} />
-              {errors.profileImage && <p className="text-red-600">{errors.profileImage.message}</p>}
-            </LabelInputContainer>
-
+            </LabelInputContainer> 
+            <LabelInputContainer>
+                <Label htmlFor="lastname">Address</Label>
+                <Input
+                  id="address"
+                  placeholder="Address"
+                  type="text"
+                  {...register("address", { required: "Address is required" })}
+                />
+                {errors.lastname && <p className="text-red-600">{errors.lastname.message}</p>}
+              </LabelInputContainer>
+            </div>
             <button
               className="bg-gradient-to-br relative group/btn bg-[#24287a] w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
               type="submit"
