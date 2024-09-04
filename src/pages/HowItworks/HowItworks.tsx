@@ -3,6 +3,10 @@ import { ReactLenis } from 'lenis/react'
 import { useTransform, motion, useScroll, } from 'framer-motion'
 import { useRef } from 'react'
 import { ScrollCardProps } from '@/types/types'
+import fb from '../../assets/logos_facebook.png'
+import insta from '../../assets/skill-icons_instagram.png'
+import linkedin from '../../assets/skill-icons_linkedin.png'
+import youtube from '../../assets/logos_youtube-icon.png'
 
 const projects = [
   {
@@ -10,7 +14,7 @@ const projects = [
     description:
       "Welcome to GameSpace! We're excited to have you on board as you explore the easiest way to book sports facilities in your area. Whether you're a seasoned athlete, a weekend warrior, or just looking for a place to have fun, our platform is designed to make your booking experience smooth, efficient, and enjoyable. Let’s walk you through how to get started!",
     src: 'rock.jpg',
-    link: 'https://images.unsplash.com/photo-1605106702842-01a887a31122?q=80&w=500&auto=format&fit=crop',
+    link: 'https://i.ibb.co/C7ddKXK/welcome-Page.png',
     color: '#24287a',
   },
   {
@@ -18,7 +22,7 @@ const projects = [
     description:
       "Start by creating an account with us. Click on the 'Sign Up' button at the top right of the homepage. You'll need to enter your name, email address, and create a password. Once you’ve filled in your details, check your email for a confirmation link to verify your account or Login your account. After verification, you’re all set to log in and start booking.",
     src: 'rock.jpg',
-    link: 'https://images.unsplash.com/photo-1605106702842-01a887a31122?q=80&w=500&auto=format&fit=crop',
+    link: 'https://i.ibb.co/CJH8F8Z/login.png',
     color: '#24287a',
   },
   {
@@ -60,6 +64,7 @@ export default function HowItworks(): JSX.Element {
     target: container,
     offset: ['start start', 'end end'],
   })
+ 
   return (
     <ReactLenis root>
       <main className="bg-[#12143D] mt-20" ref={container}>
@@ -104,6 +109,7 @@ export const Card: React.FC<ScrollCardProps> = ({
   color,
   progress,
   range,
+  url,
   targetScale,
 }) => {
   const container = useRef(null)
@@ -114,7 +120,7 @@ export const Card: React.FC<ScrollCardProps> = ({
 
   const imageScale = useTransform(scrollYProgress, [0, 1], [2, 1])
   const scale = useTransform(progress, range, [1, targetScale])
-
+  const icons = [{item:fb,link:''},{item:insta,link:''},{item:linkedin,link:''},{item:youtube,link:''}]
   return (
     <div
       ref={container}
@@ -126,23 +132,23 @@ export const Card: React.FC<ScrollCardProps> = ({
           scale,
           top: `calc(-5vh + ${i * 25}px)`,
         }}
-        className={`flex flex-col relative -top-[25%] h-[450px] w-[70%] rounded-md p-10 origin-top`}
+        className={`flex flex-col relative -top-[25%] h-[450px] w-full md:w-[70%] rounded-md p-10 origin-top`}
       >
-        <h2 className="text-2xl text-center font-semibold">{title}</h2>
-        <div className={`flex h-full mt-5 gap-10`}>
-          <div className={`w-[40%] relative top-[10%]`}>
-            <p className="text-sm">{description}</p>
+        <h2 className=" text-xl md:text-2xl text-center font-semibold">{title}</h2>
+        <div className={`flex flex-col-reverse md:flex-row h-full mt-5 gap-2 md:gap-10`}>
+
+          <div className={`w-full md:w-[40%] relative top-0 md:top-[10%]`}>
+            <p className="text-xs md:text-sm ">{description}</p>
             <span className="flex items-center gap-2 pt-2">
               <a
                 href={'#'}
                 target="_blank"
-                className="underline cursor-pointer"
+                className="underline cursor-pointer text-xs md:text-sm"
               >
                 See more
               </a>
               <svg
-                width="22"
-                height="12"
+               className='size-3 md:size-6'
                 viewBox="0 0 22 12"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -153,24 +159,24 @@ export const Card: React.FC<ScrollCardProps> = ({
                 />
               </svg>
             </span>
-            <div className='flex justify-start items-center gap-10 pt-10'>
-                <div>fb</div>
-                <div>fb</div>
-                <div>fb</div>
-                <div>fb</div>
+            <div className='flex justify-start items-center gap-4 md:gap-10 pt-2 md:pt-10'>
+                {
+                  icons?.map(icon => (<div><img src={icon.item} alt="" className='w-6 md:w-10'/></div>))
+                }
+                
             </div>
           </div>
 
           <div
-            className={`relative w-[50%] h-full rounded-lg overflow-hidden `}
+            className={`relative w-[50%] h-[30vh] rounded-lg overflow-hidden `}
           >
             <motion.div
               className={`w-full h-full`}
               style={{ scale: imageScale }}
             >
               {/* <Image fill src={url} alt="image" className="object-cover" /> */}
-             <div className='w-full bg-red-500'>
-hello
+             <div className='w-full bg-gray-100 flex justify-center h-[30vh] items-center'>
+                <img src={url} alt="" className=''/>
              </div>
             </motion.div>
           </div>

@@ -50,15 +50,15 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="flex relative">
+    <div className="flex relative w-full min-h-[60vh] xl:min-h-[100vh] ">
       <NavLink to={'/'} className="absolute top-10 left-10 p-2 border rounded-full hover:border-[#12143d] duration-300">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
   <path fillRule="evenodd" d="M7.28 7.72a.75.75 0 0 1 0 1.06l-2.47 2.47H21a.75.75 0 0 1 0 1.5H4.81l2.47 2.47a.75.75 0 1 1-1.06 1.06l-3.75-3.75a.75.75 0 0 1 0-1.06l3.75-3.75a.75.75 0 0 1 1.06 0Z" clipRule="evenodd" />
 </svg>
 
       </NavLink>
-      <div className="flex justify-center items-center w-[50%] bg-gray-100">
-      <div className="min-h-[100vh] w-[50%] flex justify-center items-center">
+      <div className="flex justify-center items-center w-full md:w-[50%] px-4 md:px-0 bg-gray-100">
+      <div className="min-h-[100vh] w-full xl:w-[50%] flex justify-center items-center">
         <div className="max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8 shadow-input bg-white dark:bg-black">
           <h2 className="font-bold text-xl text-neutral-800 dark:text-neutral-200">
             Welcome to GameSpace
