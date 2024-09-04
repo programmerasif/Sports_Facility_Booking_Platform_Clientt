@@ -8,8 +8,6 @@ const DashboardInterface = () => {
     if (locationPath == "/dashoard/") {
         locationPath = "/dashoard"
     }
-
-    console.log(locationPath);
   return (
     <div className="flex flex-col w-full">
         <Dashboardheader />

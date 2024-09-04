@@ -161,7 +161,7 @@ export const Card: React.FC<ScrollCardProps> = ({
             </span>
             <div className='flex justify-start items-center gap-4 md:gap-10 pt-2 md:pt-10'>
                 {
-                  icons?.map(icon => (<div><img src={icon.item} alt="" className='w-6 md:w-10'/></div>))
+                  icons?.map(icon => (<div key={icon.item}><img src={icon.item} alt="" className='w-6 md:w-10'/></div>))
                 }
                 
             </div>

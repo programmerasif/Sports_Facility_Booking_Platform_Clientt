@@ -5,6 +5,8 @@ import HowItworks from "../HowItworks/HowItworks";
 
 
 import TopFacalitys from "../TopFacalitys/TopFacalitys";
+import Chart from "../Chart/Chart";
+import { Address } from "../Address/Address";
 
 
 const Home = () => {
@@ -13,7 +15,9 @@ const Home = () => {
             <Banner />
             <TopFacalitys />
             <HowItworks />
+            <Chart />
             <Testmonial />
+            <Address />
         </div>
     );
 };

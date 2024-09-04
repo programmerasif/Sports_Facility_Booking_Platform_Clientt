@@ -12,9 +12,12 @@ const userInfotSlice = createSlice({
     reducers: {
       setUserInfo: (state, action:PayloadAction<TUser>) => {
         state.user.push(action.payload);
-      }
+      },
+      logOut: (state) => {
+        state.user = [];
+    }
     },
   });
 
-  export const {setUserInfo} =userInfotSlice.actions;
+  export const {setUserInfo,logOut} =userInfotSlice.actions;
   export default userInfotSlice.reducer

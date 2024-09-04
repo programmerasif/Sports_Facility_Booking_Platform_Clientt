@@ -4,7 +4,9 @@ import logo from '../../assets/logo/logo.png'
 import React, { useState, createContext, useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { IconMenu2, IconX } from "@tabler/icons-react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logOut } from "@/redux/feature/userInfo/userInfoSlice";
 
 interface Links {
   label: string;
@@ -169,6 +171,17 @@ export const SidebarLink = ({
   props?: any;
 }) => {
   const { open, animate } = useSidebar();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handelLogOut = (name:string) =>{
+   
+    if (name === 'Account Logout') {
+      console.log("i have to log out ");
+      dispatch(logOut());
+      navigate('/');
+    }
+  }
   return (
     <NavLink
       to={link.href}
@@ -177,6 +190,7 @@ export const SidebarLink = ({
         className
       )}
       {...props}
+      onClick={() => handelLogOut(link.label)}
     >
       {link.icon}
 

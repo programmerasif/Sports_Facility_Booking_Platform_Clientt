@@ -6,7 +6,6 @@ const Dashboardheader = () => {
     const today = new Date();
   
     const formattedDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
-    console.log(user);
     
     return (
     <div className="bg-gray-50 flex justify-between items-center w-full shadow-xl py-1 md:py-0 px-2 md:px-4">

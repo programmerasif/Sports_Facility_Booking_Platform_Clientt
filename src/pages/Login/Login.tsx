@@ -6,7 +6,7 @@ import { LabelInputContainer } from "@/components/ui/LabelInputContainer";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FormValues } from "@/types/types";
 import { useLoginMutation } from "@/redux/feature/auth/authApi";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { setUserInfo } from "@/redux/feature/userInfo/userInfoSlice";
 import { useAppDispatch } from "@/redux/api/hook";
 import Lottie from "lottie-react";
@@ -16,6 +16,7 @@ import login from '../../assets/login.json'
 const Login: React.FC = () => {
   const [signIn] = useLoginMutation();
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -42,6 +43,7 @@ const Login: React.FC = () => {
           address:res?.data?.data?.address,
           token:token
       }
+      navigate('/dashboard');
       dispatch(setUserInfo(user))
      
     } catch (error) {

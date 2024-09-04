@@ -8,7 +8,6 @@ const MainLayout = () => {
     const locationPath = location.pathname;
     const islogin = locationPath == "/login";
     const isRegister = locationPath == "/register";
-    console.log(islogin)
     return (
         <div className="">
             {
