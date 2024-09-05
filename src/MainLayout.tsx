@@ -1,16 +1,27 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Navbr from "./pages/NavBr/Navbr";
 import Footer from "./pages/Footer/Footer";
 
 
 const MainLayout = () => {
+    const location = useLocation();
+    const locationPath = location.pathname;
+    const islogin = locationPath == "/login";
+    const isRegister = locationPath == "/register";
+    console.log(islogin)
     return (
         <div className="">
-            <Navbr />
+            {
+                !islogin && !isRegister &&  <Navbr />
+            }
+           
             <div className="">
             <Outlet />
             </div>
-            <Footer />
+            {
+                !islogin && !isRegister &&  <Footer />
+            }
+            
         </div>
     );
 };
