@@ -7,11 +7,11 @@ import Register from "@/pages/Register/Register";
 import Login from "@/pages/Login/Login";
 import MainDashboard from "@/pages/Dashboard/MainDashboard";
 import BookingManagement from "@/pages/BookingManagement/BookingManagement";
-import FacalityManagement from "@/pages/FacalityManagement/FacalityManagement";
 import ManageUser from "@/pages/ManageUser/ManageUser";
 import CreateAdmin from "@/pages/CreateAdmin/CreatAdmin";
 import Contact from "@/pages/Contact/Contact";
 import AboutUs from "@/pages/AboutUs/AboutUs";
+import FacilityManagement from "@/pages/FacalityManagement/FacalityManagement";
 
 
 const routs = createBrowserRouter([
@@ -28,7 +28,7 @@ const routs = createBrowserRouter([
                 element:<Facality />
             },
             {
-                path:'/contsct',
+                path:'/contact',
                 element:<Contact />
             },
             {
@@ -46,7 +46,7 @@ const routs = createBrowserRouter([
         ]
     },
     {
-        path: '/dashoard',
+        path: '/dashboard',
         element: <MainDashboard />,
         children:[
             {
@@ -59,7 +59,7 @@ const routs = createBrowserRouter([
             },
             {
                 path:'facality-management',
-                element:<FacalityManagement/>
+                element:<FacilityManagement/>
             },
             {
                 path:'create-admin',

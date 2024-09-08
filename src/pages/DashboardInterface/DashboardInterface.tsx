@@ -5,15 +5,15 @@ import { Outlet, useLocation } from "react-router-dom";
 const DashboardInterface = () => {
     const location = useLocation();
     let locationPath = location.pathname;
-    if (locationPath == "/dashoard/") {
-        locationPath = "/dashoard"
+    if (locationPath == "/dashboard/") {
+        locationPath = "/dashboard"
     }
   return (
     <div className="flex flex-col w-full">
         <Dashboardheader />
         <div className="m-5">
         {
-            locationPath == ('/dashoard' || '/dashoard/') ? <DashboardFirstLook /> : <Outlet />
+            locationPath == ('/dashboard' || '/dashboard/') ? <DashboardFirstLook /> : <Outlet />
         }
         </div>
       

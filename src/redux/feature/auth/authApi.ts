@@ -2,12 +2,26 @@ import { baseApi } from "../../api/baseApi";
 
 const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    creatUser: builder.mutation({
+    createUser: builder.mutation({
       query: (data) => ({
         url: "/auth/userSignup",
         method: "POST",
         body: data,
       }),
+    }),
+    createAdmin: builder.mutation({
+      query: (data) => {
+        console.log(data.token);
+        
+        return {
+          url: "/auth/userSignup",
+          method: "POST",
+          body: data?.userData,
+          headers: {
+            Authorization: `Bearer ${data?.token}`,
+          },
+        }
+      },
     }),
     login: builder.mutation({
       query: (data) => {
@@ -25,7 +39,8 @@ const authApi = baseApi.injectEndpoints({
 });
 
 export const {
- useCreatUserMutation,
+ useCreateUserMutation,
+ useCreateAdminMutation,
  useLoginMutation
   
 } = authApi;

@@ -30,6 +30,7 @@
     "react-router-dom": "^6.26.1",
     "recharts": "^2.12.7",
     "redux-persist": "^6.0.0",
+    "sweetalert2": "^11.13.3",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7"
   },

@@ -6,9 +6,9 @@ import { NavLink } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <div className=" bg-[#12143D] min-h-[20vh] shadow-xl mt-20">
-          <div className=" px-4 sm:px-6 lg:px-20 grid grid-cols-4">
-            <div className=" text-white flex justify-center items-center flex-col">
+        <div className=" bg-[#12143D] min-h-[20vh] shadow-xl mt-20 w-full">
+          <div className=" px-4 sm:px-6 lg:px-20  w-full">
+            <div className=" text-white flex justify-center items-center flex-col w-full">
               <div className="grid grid-cols-1 md:grid-cols-4 gap-12 w-full  py-5 md:py-20">
                 <div className="flex flex-col justify-between items-start">
                   <NavLink to="/" className="flex justify-end flex-1 md:flex-none">

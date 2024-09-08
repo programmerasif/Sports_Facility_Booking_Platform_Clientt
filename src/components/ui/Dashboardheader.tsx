@@ -14,7 +14,7 @@ const Dashboardheader = () => {
             <div className="text-sm">{formattedDate}</div>
         </div>
         <div className="bg-gray-200 flex justify-center items-center gap-5 rounded-full px-1 py-1">
-            <NavLink to={'/dashoard'}><div className="rounded-full p-1 md:p-3 font-semibold bg-white cursor-pointer">Dashboard</div></NavLink>
+            <NavLink to={'/dashboard'}><div className="rounded-full p-1 md:p-3 font-semibold bg-white cursor-pointer">Dashboard</div></NavLink>
             
            <NavLink to={'/'}> <div className="rounded-full p-1 md:p-3 font-semibold cursor-pointer ">Websit</div></NavLink>
         </div>

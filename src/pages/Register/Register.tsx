@@ -8,14 +8,14 @@ import { LabelInputContainer } from "@/components/ui/LabelInputContainer";
 import Lottie from "lottie-react";
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { FormValues } from "@/types/types";
-import { useCreatUserMutation } from "@/redux/feature/auth/authApi";
+import { useCreateUserMutation } from "@/redux/feature/auth/authApi";
 import { NavLink, useNavigate} from "react-router-dom";
 import login from '../../assets/login.json'
 import { useAppDispatch } from "@/redux/api/hook";
 import { setUserInfo } from "@/redux/feature/userInfo/userInfoSlice";
 
 const Register: React.FC = () => {
-    const [creteUser] = useCreatUserMutation()
+    const [creteUser] = useCreateUserMutation()
   const { register, handleSubmit,watch, formState: { errors } } = useForm<FormValues>();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();

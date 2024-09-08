@@ -42,14 +42,14 @@ const Navbar = () => {
               Home
             </NavLink>
             <NavLink
-              to="/contsct"
+              to="/contact"
               className={({ isActive }) =>
                 isActive
                   ? "text-[#F7A400] font-bold transition duration-300"
                   : "text-gray-50 hover:text-[#F7A400] transition duration-300"
               }
             >
-              Contsct
+              Contact
             </NavLink>
             <NavLink
               to="/about-us"
@@ -75,7 +75,7 @@ const Navbar = () => {
            {
             user.length ? 
             <NavLink
-            to="/dashoard"
+            to="/dashboard"
             className='text-white px-6 py-2 rounded-md bg-[#F7A400] transition duration-300 font-bold'
           >
             Dashboard
