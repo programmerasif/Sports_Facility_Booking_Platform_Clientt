@@ -1,8 +1,10 @@
 import { HoverEffect } from "@/components/ui/card-hover-effect";
 
 const CommonFacality = ({ facality }) => {
+  
+  
   const projects =
-    facality?.data?.map((item) => ({
+    facality?.data?.facility?.map((item) => ({
       title: item?.name,
       description: item?.description,
       types: [],

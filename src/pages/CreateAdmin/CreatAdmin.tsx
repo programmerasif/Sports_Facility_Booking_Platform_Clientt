@@ -57,9 +57,9 @@ const CreateAdmin = () => {
             image: hostedImage,
             address:data?.address
         }
-        console.log({userData,token:user[0]?.token});
         
-        const res = await creteAdmin({userData,token:user[0]?.token})
+        
+        const res = await creteAdmin({userData,token:user?.token})
         
         if (res.data?.success) {
           Swal.fire({

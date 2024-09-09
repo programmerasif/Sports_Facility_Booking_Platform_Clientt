@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 
 const initialState:TInitialState = {
-    user:[]
+    user: null
 }
 
 const userInfotSlice = createSlice({
@@ -11,10 +11,12 @@ const userInfotSlice = createSlice({
     initialState,
     reducers: {
       setUserInfo: (state, action:PayloadAction<TUser>) => {
-        state.user.push(action.payload);
+        console.log(action);
+        
+        state.user = action.payload;
       },
       logOut: (state) => {
-        state.user = [];
+        state.user = null;
     }
     },
   });

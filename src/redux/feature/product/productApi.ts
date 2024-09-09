@@ -6,6 +6,7 @@ const productApi = baseApi.injectEndpoints({
    
     getProducts: builder.query({
         query: (args) => {
+        
           const params = new URLSearchParams();
   
           if (args) {
@@ -13,15 +14,33 @@ const productApi = baseApi.injectEndpoints({
               params.append(item.name, item.value as string);
             });
           }
-  
+         
+          
           return {
-            url: "/facility",
+            url: `/facility?${params.toString()}`,
             method: "GET",
-            params: params,
           };
         },
       
       }),
+      deleteProducts: builder.mutation({
+          query: (data) => {
+          
+          if (!data?.token) {
+            console.log('token not found');
+            
+          }
+          
+            return {
+              url: `/facility/${data?.id}`,
+              method: "delete",
+              headers: {
+                Authorization: `${data?.token}`,
+              },
+            };
+          },
+        
+        }),
    
     
   }),
@@ -29,5 +48,5 @@ const productApi = baseApi.injectEndpoints({
 
 export const {
   useGetProductsQuery,
-  
+  useDeleteProductsMutation
 } = productApi;

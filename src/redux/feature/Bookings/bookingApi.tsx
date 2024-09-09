@@ -12,8 +12,14 @@ const bookingApi = baseApi.injectEndpoints({
     //   }),
     // }),
     getAllBookings: builder.query({
+      
         query: ({ token, args }) => {
-          console.log(args);
+          console.log(token ,"token ====>");
+          
+          if (!token) {
+            console.log('token missing');
+            
+          }
           const params = new URLSearchParams();
   
           if (args) {
@@ -21,7 +27,7 @@ const bookingApi = baseApi.injectEndpoints({
               params.append(item.name, item.value as string);
             });
           }
-          console.log(params);
+
           
           return {
             url: "/bookings",

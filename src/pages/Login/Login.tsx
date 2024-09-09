@@ -43,6 +43,8 @@ const Login: React.FC = () => {
           address:res?.data?.data?.address,
           token:token
       }
+      console.log(res, " login response");
+      
       navigate('/dashboard');
       dispatch(setUserInfo(user))
      

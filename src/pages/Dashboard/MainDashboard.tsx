@@ -34,7 +34,7 @@ const MainDashboard= () => {
           <div>
             <SidebarLink
               link={{
-                label: `${user[0].name}`,
+                label: `${user?.name}`,
                 href: "#",
                 icon: (
                   <img

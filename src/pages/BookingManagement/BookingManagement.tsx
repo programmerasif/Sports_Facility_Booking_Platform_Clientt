@@ -16,21 +16,36 @@ import {
   } from "@/components/ui/table";
   import { useAppSelector } from "@/redux/api/hook";
 import { useGetAllBookingsQuery } from "@/redux/feature/Bookings/bookingApi";
+import { useState } from "react";
  
   
   const BookingManagement = () => {
     const { user } = useAppSelector((state) => state?.user);
-    const token = user[0]?.token;
-  
+    const [page,setPage] = useState(1)
+    const token = user?.token;
+ 
+    
     const { data: bookings } = useGetAllBookingsQuery({
-      token,
+      token:token,
       args: [
-        { name: "page", value: "1" },
-        { name: "limit", value: "2" },
+        { name: "page", value: page },
+        { name: "limit", value: "4" },
         { name: "sort", value: 'name' },
       ],
     });
-    console.log(bookings?.data);
+  console.log(bookings);
+  
+  const handlePaginatePrev = () =>{
+    setPage(page - 1)
+   }
+  console.log(bookings?.data,"booking");
+  
+  const handlePaginateNext = () =>{
+    if (bookings?.data?.hasMore) {
+      setPage(page + 1)
+    }
+    
+   }
   
     return (
       <div className="sm:px-6 lg:px-20 mt-20 md:mt-28 ">
@@ -72,7 +87,7 @@ import { useGetAllBookingsQuery } from "@/redux/feature/Bookings/bookingApi";
               </TableRow>
             </TableHeader>
             <TableBody>
-              {bookings?.data?.map((item: any) => (
+              {bookings?.data?.facility?.map((item: any) => (
                 <TableRow key={item?._id}>
                   <TableCell className="font-bold text-balance text-[#262626e5] w-[22%] bg-[#EBF5FB] rounded-br-full">
                     {item?.user?.name}
@@ -126,13 +141,13 @@ import { useGetAllBookingsQuery } from "@/redux/feature/Bookings/bookingApi";
             <PaginationContent>
               <PaginationItem>
                 <button
-                // className={`${
-                //   page === 1
-                //     ? "bg-gray-300 md:px-6 md:py-3 sm:py-2 px-3 text-sm rounded-full text-gray-100"
-                //     : "bg-white md:px-6 md:py-3 sm:py-2 px-3 text-sm text-black font-semibold rounded-full"
-                // } `}
-                // onClick={() => handlePaginate(-1)}
-                // disabled={page === 1}
+                className={`${
+                  page === 1
+                   ? "bg-gray-300 md:px-6 md:py-3 sm:py-2 px-3 text-sm rounded-full text-gray-100"
+                   : "bg-white md:px-6 md:py-3 sm:py-2 px-3 text-sm text-black font-semibold rounded-full"
+                } `}
+               onClick={() => handlePaginatePrev()}
+               disabled={page === 1}
                 >
                   Previous
                 </button>
@@ -142,7 +157,7 @@ import { useGetAllBookingsQuery } from "@/redux/feature/Bookings/bookingApi";
               </PaginationItem>
               <PaginationItem>
                 <PaginationLink href="#" isActive>
-                  {}
+                  {page}
                 </PaginationLink>
               </PaginationItem>
               <PaginationItem>
@@ -152,14 +167,14 @@ import { useGetAllBookingsQuery } from "@/redux/feature/Bookings/bookingApi";
                 <PaginationEllipsis />
               </PaginationItem>
               <PaginationItem>
-                <button
-                // className={`${
-                //   !isAvailable
-                //     ? "bg-gray-300 md:px-6 md:py-3 sm:py-2 px-3 text-sm rounded-full text-gray-100"
-                //     : "bg-white md:px-6 md:py-3 sm:py-2 px-3 text-sm text-black font-semibold rounded-full"
-                // } `}
-                // onClick={() => handlePaginate(1)}
-                // disabled={!isAvailable}
+              <button
+               className={`${
+                 !bookings?.data?.hasMore
+                   ? "bg-gray-300 md:px-6 md:py-3 sm:py-2 px-3 text-sm rounded-full text-gray-100"
+                   : "bg-white md:px-6 md:py-3 sm:py-2 px-3 text-sm text-black font-semibold rounded-full"
+               } `}
+               onClick={handlePaginateNext}
+                disabled={!bookings?.data?.hasMore}
                 >
                   Next
                 </button>

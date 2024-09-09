@@ -37,5 +37,5 @@ export interface TUser {
   token:string
 }
 export type TInitialState = {
-  user: TUser[];
+  user: TUser | null; 
 };

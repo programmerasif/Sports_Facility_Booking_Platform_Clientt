@@ -14,15 +14,15 @@ const Dashboardheader = () => {
             <div className="text-sm">{formattedDate}</div>
         </div>
         <div className="bg-gray-200 flex justify-center items-center gap-5 rounded-full px-1 py-1">
-            <NavLink to={'/dashboard'}><div className="rounded-full p-1 md:p-3 font-semibold bg-white cursor-pointer">Dashboard</div></NavLink>
+            <NavLink to={'/dashboard'}><div className="rounded-full p-1 md:p-3 font-semibold bg-white cursor-pointer text-[#F7A400]">Dashboard</div></NavLink>
             
-           <NavLink to={'/'}> <div className="rounded-full p-1 md:p-3 font-semibold cursor-pointer ">Websit</div></NavLink>
+           <NavLink to={'/'}> <div className="rounded-full p-1 md:p-3 font-semibold cursor-pointer ">Website</div></NavLink>
         </div>
         <div className="flex justify-center items-center gap-5">
         <div>
         <div className="flex flex-col">
-        <span className="font-semibold"> {user[0].name.slice(0,12)} </span>
-        <span className="text-sm text-[#12143D]"> {user[0].role =='admin' ? "Authority" : "Customer"} </span>
+        <span className="font-semibold"> {user?.name?.slice(0,12)} </span>
+        <span className="text-sm text-[#12143D]"> {user?.role =='admin' ? "Authority" : "Customer"} </span>
         </div>
         </div> 
         <div><img src={'https://i.ibb.co/fnfBTSN/Untitled-design-1.png'} alt="" className="w-8 md:w-12 rounded-full ring" /></div> 
