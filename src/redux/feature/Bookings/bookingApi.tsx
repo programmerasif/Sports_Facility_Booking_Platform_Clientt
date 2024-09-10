@@ -8,7 +8,7 @@ const bookingApi = baseApi.injectEndpoints({
     getAllBookings: builder.query({
       
         query: ({ token, args }) => {
-          console.log(token ,"token ====>");
+
           
           if (!token) {
             console.log('token missing');

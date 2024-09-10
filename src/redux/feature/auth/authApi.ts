@@ -1,7 +1,38 @@
+import { TQueryParam } from "@/types/types";
 import { baseApi } from "../../api/baseApi";
 
 const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    getUser: builder.query({
+      
+      query: ({ token, args }) => {
+
+          
+        if (!token) {
+          console.log('token missing');
+          
+        }
+        const params = new URLSearchParams();
+
+        if (args) {
+          args.forEach((item: TQueryParam) => {
+            params.append(item.name, item.value as string);
+          });
+        }
+
+        
+        return {
+          url: "/auth",
+          method: "GET",
+          params: params,
+          headers: {
+              Authorization: `${token}`, 
+              'Content-Type': 'application/json',  
+              
+          }
+        };
+      },
+    }),
     createUser: builder.mutation({
       query: (data) => ({
         url: "/auth/userSignup",
@@ -10,15 +41,13 @@ const authApi = baseApi.injectEndpoints({
       }),
     }),
     createAdmin: builder.mutation({
-      query: (data) => {
-        console.log(data.token);
-        
+      query: (data) => { 
         return {
           url: "/auth/userSignup",
           method: "POST",
           body: data?.userData,
           headers: {
-            Authorization: `Bearer ${data?.token}`,
+            Authorization: `${data?.token}`,
           },
         }
       },
@@ -41,6 +70,7 @@ const authApi = baseApi.injectEndpoints({
 export const {
  useCreateUserMutation,
  useCreateAdminMutation,
- useLoginMutation
+ useLoginMutation,
+ useGetUserQuery
   
 } = authApi;

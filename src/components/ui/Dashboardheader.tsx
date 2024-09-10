@@ -21,8 +21,8 @@ const Dashboardheader = () => {
         <div className="flex justify-center items-center gap-5">
         <div>
         <div className="flex flex-col">
-        <span className="font-semibold"> {user?.name?.slice(0,12)} </span>
-        <span className="text-sm text-[#12143D]"> {user?.role =='admin' ? "Authority" : "Customer"} </span>
+        <span className="font-semibold text-[#F7A400]"> {user?.name?.slice(0,12)} </span>
+        <span className="text-xm text-[#12143D]"> {user?.role =='admin' ? <span className="text-sm">Authority</span> : <span className="text-sm">Customer</span>} </span>
         </div>
         </div> 
         <div><img src={'https://i.ibb.co/fnfBTSN/Untitled-design-1.png'} alt="" className="w-8 md:w-12 rounded-full ring" /></div> 

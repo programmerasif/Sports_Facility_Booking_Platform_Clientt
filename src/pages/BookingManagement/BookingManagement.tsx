@@ -21,8 +21,8 @@ import { useState } from "react";
   
   const BookingManagement = () => {
     const { user } = useAppSelector((state) => state?.user);
-    const [page,setPage] = useState(1)
     const token = user?.token;
+    const [page,setPage] = useState(1)
  
     
     const { data: bookings } = useGetAllBookingsQuery({
