@@ -11,12 +11,17 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import LoadingComponent from "./LoadingComponent";
+import { useCreateProductsMutation } from "@/redux/feature/product/productApi";
+import Swal from "sweetalert2";
+import { useAppSelector } from "@/redux/api/hook";
 
 // Replace with your actual UI component library
 
 const AddModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading,setLoading] = useState(false)
+  const { user } = useAppSelector((state) => state?.user);
+    const token = user?.token;
   const {
     register,
     handleSubmit,
@@ -24,7 +29,7 @@ const AddModal = () => {
     reset,
   } = useForm<FormData>();
 //   const [addProduct] = useAddProductMutation();
-
+const [createFacility] = useCreateProductsMutation()
   interface FormData {
     
     name: string;
@@ -58,25 +63,24 @@ const AddModal = () => {
         const facility = {
           image: result.data.url,
           name: data.name,
-          pricePerHour: data.pricePerHour,
+          pricePerHour: Number(data.pricePerHour),
           description: data.description,
           location: data.location,
         };
-        console.log(facility);
         
         setLoading(true)
-        // const res = await addProduct(product).unwrap();
-        // if (res.success) {
-        //   setLoading(false)
-        //   Swal.fire({
-        //     position: "center",
-        //     icon: "success",
-        //     title: "Added Product SucessFully",
-        //     showConfirmButton: false,
-        //     timer: 1500,
-        //   });
-        // }
-        // console.log(res);
+        const res = await createFacility({facility,token}).unwrap();
+        if (res.success) {
+          setLoading(false)
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Create Facility SucessFully",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+        console.log(res);
       } else {
         console.error("Upload failed:", result);
         setLoading(false)
@@ -93,7 +97,7 @@ const AddModal = () => {
         <div
           onClick={() => setIsOpen(true)}
         >
-          <div className="flex justify-center items-center gap-2">
+          <div className="flex justify-center text-sm items-center gap-2">
             <span>Add Facility </span>
             <span>
               <svg
@@ -116,7 +120,7 @@ const AddModal = () => {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[800px] w-full h-[450px]">
         <DialogHeader>
-          <DialogTitle className="text-[#12143D]">Add New Product</DialogTitle>
+          <DialogTitle className="text-[#12143D]">Add New Facility</DialogTitle>
           <DialogDescription>
             You have to give all the information here
           </DialogDescription>

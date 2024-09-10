@@ -6,6 +6,7 @@ import { useDeleteProductsMutation, useGetProductsQuery } from "@/redux/feature/
 import { useState } from "react";
 import AddModal from "./AddModal";
 import UpdateModal from "./UpdateModal";
+import Swal from "sweetalert2";
 
 
 
@@ -34,11 +35,26 @@ const FacilityManagement = () => {
      }
     
 
-    const handelDelete = async(id:string) =>{
+    const handelDelete = async(id:string,token:string) =>{
       
-     const res = await deleteFacility(deleteFacility({id,token:user?.token}))
-     console.log(res);
-     
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await deleteFacility({id,token})
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success"
+          });
+        }
+      });
     }
   
     return (
@@ -117,16 +133,15 @@ const FacilityManagement = () => {
                   <TableCell>
                     <button className=" bg-green-100 px-3 py-1 rounded-md">
                    
-                    <UpdateModal />
+                    <UpdateModal singleItem={item}/>
                     </button>
                   </TableCell>
                   <TableCell>
-                    <button className={` font-semibold  px-3 py-1 rounded-md ${item?.isDeleted ? "disabled bg-gray-200" : "bg-red-100 text-red-500"}`} onClick={() => handelDelete(item?._id)}>
+                    <button className={` font-semibold  px-3 py-1 rounded-md ${item?.isDeleted ? "disabled bg-gray-200" : "bg-red-100 text-red-500"}`} onClick={() => handelDelete(item?._id,user?.token)}>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
                      <path d="M3.375 3C2.339 3 1.5 3.84 1.5 4.875v.75c0 1.036.84 1.875 1.875 1.875h17.25c1.035 0 1.875-.84 1.875-1.875v-.75C22.5 3.839 21.66 3 20.625 3H3.375Z" />
                      <path fillRule="evenodd" d="m3.087 9 .54 9.176A3 3 0 0 0 6.62 21h10.757a3 3 0 0 0 2.995-2.824L20.913 9H3.087Zm6.133 2.845a.75.75 0 0 1 1.06 0l1.72 1.72 1.72-1.72a.75.75 0 1 1 1.06 1.06l-1.72 1.72 1.72 1.72a.75.75 0 1 1-1.06 1.06L12 15.685l-1.72 1.72a.75.75 0 1 1-1.06-1.06l1.72-1.72-1.72-1.72a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
                     </svg>
-
                     </button>
                   </TableCell>
                 </TableRow>

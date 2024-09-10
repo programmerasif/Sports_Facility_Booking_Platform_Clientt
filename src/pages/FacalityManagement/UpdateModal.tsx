@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 // export default ProductAddModal;
 import { Button } from "@/components/ui/button";
@@ -11,19 +12,23 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import LoadingComponent from "./LoadingComponent";
+import { useUpdateProductsMutation } from "@/redux/feature/product/productApi";
+import { useAppSelector } from "@/redux/api/hook";
 
-// Replace with your actual UI component library
 
-const UpdateModal = () => {
+
+const UpdateModal = ({singleItem}:any) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading,setLoading] = useState(false)
+  const { user } = useAppSelector((state) => state?.user);
+  const token = user?.token;
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm<FormData>();
-//   const [addProduct] = useAddProductMutation();
+const [updateFacility] = useUpdateProductsMutation()
 
   interface FormData {
     
@@ -34,7 +39,8 @@ const UpdateModal = () => {
     category:string,
     image: FileList;
   }
-  
+console.log(singleItem);
+
   
   const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
     if (Object.keys(errors).length === 0) {
@@ -55,17 +61,17 @@ const UpdateModal = () => {
 
       const result = await response.json();
       if (result.success) {
-        const facility = {
+        const updatedFacilityData = {
           image: result.data.url,
           name: data.name,
-          pricePerHour: data.pricePerHour,
+          pricePerHour: Number(data.pricePerHour),
           description: data.description,
           location: data.location,
         };
-        console.log(facility);
+     
         
         setLoading(true)
-        // const res = await addProduct(product).unwrap();
+        const res = await updateFacility({id:singleItem?._id,token,updatedFacilityData}).unwrap();
         // if (res.success) {
         //   setLoading(false)
         //   Swal.fire({
@@ -76,7 +82,7 @@ const UpdateModal = () => {
         //     timer: 1500,
         //   });
         // }
-        // console.log(res);
+        console.log(res);
       } else {
         console.error("Upload failed:", result);
         setLoading(false)
@@ -122,7 +128,7 @@ const UpdateModal = () => {
               </Label>
               <Input
                 id="name"
-                placeholder="Add Name"
+                defaultValue={singleItem?.name}
                 className={`shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
                   errors.name ? "border-2 border-red-500" : ""
                 }`}
@@ -135,7 +141,7 @@ const UpdateModal = () => {
               </Label>
               <Input
                 id="pricePerHour"
-                placeholder="Add Price PerHour"
+                defaultValue={singleItem.pricePerHour}
                 className={`shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline${
                   errors.pricePerHour ? "border-2 border-red-500" : ""
                 }`}
@@ -149,7 +155,7 @@ const UpdateModal = () => {
               </Label>
               <Input
                 id="description"
-                placeholder="Add Description"
+                defaultValue={singleItem?.description}
                 className={`shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline${
                   errors.description ? "border-2 border-red-500" : ""
                 }`}
@@ -162,7 +168,7 @@ const UpdateModal = () => {
               </Label>
               <Input
                 id="location"
-                placeholder="Add location"
+                defaultValue={singleItem?.location}
                 className={`shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline${
                   errors.location ? "border-2 border-red-500" : ""
                 }`}
@@ -171,16 +177,16 @@ const UpdateModal = () => {
             </div>
             
             <div className="grid w-full max-w-sm items-center gap-1.5">
-              <Label htmlFor="picture">Picture</Label>
-              <Input
-                id="image"
-                type="file"
-                {...register("image", { required: true })}
-                className={`shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline${
-                  errors.image ? "border-2 border-red-500" : ""
-                }`}
-              />
-            </div>
+            <Label htmlFor="picture">Picture</Label>
+             <Input
+               id="image"
+               type="file"
+               {...register("image", { required: true })} 
+              className={`shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                 errors.image ? "border-1 bg-red-200" : ""
+                 }`} />
+
+              </div>
             <div className="grid grid-cols-1 mt-5">
               <Button type="submit" className="bg-[#12143D] hover:bg-[#12143dd4]">
                 Add Facility 

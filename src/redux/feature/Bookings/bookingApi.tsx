@@ -4,13 +4,7 @@ import { TQueryParam } from "@/types/types";
 
 const bookingApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    // addProduct: builder.mutation({
-    //   query: (product) => ({
-    //     url: "/products/creat-product",
-    //     method: "POST",
-    //     body: product,
-    //   }),
-    // }),
+   
     getAllBookings: builder.query({
       
         query: ({ token, args }) => {
@@ -34,7 +28,7 @@ const bookingApi = baseApi.injectEndpoints({
             method: "GET",
             params: params,
             headers: {
-                Authorization: `Bearer ${token}`, 
+                Authorization: `${token}`, 
                 'Content-Type': 'application/json',  
                 
             }

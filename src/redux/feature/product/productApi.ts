@@ -23,7 +23,7 @@ const productApi = baseApi.injectEndpoints({
         },
       
       }),
-      deleteProducts: builder.mutation({
+      createProducts: builder.mutation({
           query: (data) => {
           
           if (!data?.token) {
@@ -32,11 +32,51 @@ const productApi = baseApi.injectEndpoints({
           }
           
             return {
-              url: `/facility/${data?.id}`,
-              method: "delete",
+              url: `/facility`,
+              method: "post",
               headers: {
                 Authorization: `${data?.token}`,
               },
+              body:data?.facility
+            };
+          },
+        
+        }),
+      updateProducts: builder.mutation({
+          query: (data) => {
+          
+          if (!data?.token) {
+            console.log('token not found');
+            
+          }
+          
+            return {
+              url: `/facility/${data.id}`,
+              method: "put",
+              headers: {
+                Authorization: `${data?.token}`,
+              },
+              body:data?.updatedFacilityData
+            };
+          },
+        
+        }),
+      deleteProducts: builder.mutation({
+          query: (data) => {
+            console.log(data?.token , data?.id);
+          if (!data?.token) {
+            console.log('token not found');
+            
+          }
+          
+          
+            return {
+              url: `/facility/${data?.id}`,
+              method: "delete",
+              headers: {
+                Authorization: `${data?.token}`, 
+                'Content-Type': 'application/json',  
+            }
             };
           },
         
@@ -48,5 +88,7 @@ const productApi = baseApi.injectEndpoints({
 
 export const {
   useGetProductsQuery,
-  useDeleteProductsMutation
+  useDeleteProductsMutation,
+  useCreateProductsMutation,
+  useUpdateProductsMutation
 } = productApi;
