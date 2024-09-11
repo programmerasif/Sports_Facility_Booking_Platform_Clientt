@@ -11,13 +11,14 @@ import {
   isSameMonth,
   isSameDay,
 } from "date-fns";
-import "./calander.css";
+import "./calendar.css";
+import { CalendarProps } from "@/types/types";
 
-const Calendar: React.FC = () => {
+const Calendar: React.FC<CalendarProps> = ({ handlePickDate }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState(new Date()); // Added state for selected date
+  const [selectedDate, setSelectedDate] = useState(new Date()); 
 
-  console.log(selectedDate);
+
   
 
   const renderHeader = () => {
@@ -86,7 +87,9 @@ const Calendar: React.FC = () => {
                 : ""
             }`}
             key={day.toString()}
-            onClick={() => setSelectedDate(cloneDay)} // Set the selected date
+            onClick={() => {
+              setSelectedDate(cloneDay),handlePickDate(cloneDay)
+            }} 
           >
             <span className="number ">{formattedDate}</span>
           </div>

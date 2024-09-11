@@ -1,10 +1,10 @@
 
 
 import { useGetSingleProductQuery } from "@/redux/feature/product/productApi"
-import { useParams } from "react-router-dom"
+import { NavLink, useParams } from "react-router-dom"
 
 const FacilityDetails = () =>{
-    const id = useParams()
+    const {id} = useParams()
    
     const {data} = useGetSingleProductQuery(id)
    
@@ -44,9 +44,9 @@ const FacilityDetails = () =>{
     </p>
     
    
-    <button className="mt-4 bg-gray-100 text-gray-900  py-2 px-6 rounded-lg hover:bg-gray-50 transition">
+    <NavLink to={`/booking-details/${data?.data?._id}`} className="mt-4 bg-gray-100 text-gray-900  py-2 px-6 rounded-lg hover:bg-gray-50 transition">
       Book Now
-    </button>
+    </NavLink>
   </div>
 
             </div>

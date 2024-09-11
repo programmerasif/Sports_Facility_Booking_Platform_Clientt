@@ -8,7 +8,8 @@ const bookingApi = baseApi.injectEndpoints({
     getAllBookings: builder.query({
       
         query: ({ token, args }) => {
-
+          console.log(token);
+          
           
           if (!token) {
             console.log('token missing');
@@ -36,12 +37,32 @@ const bookingApi = baseApi.injectEndpoints({
         },
       
       }),
+    checkAvailableSlots: builder.mutation({
+      
+        query: ({ token, date,facilityId}) => {
+          console.log(token);
+          
+        
+          
+          return {
+            url: `check-availability/${facilityId}?date=${date}`,
+            method: "GET",
+            headers: {
+                Authorization: `${token}`, 
+                'Content-Type': 'application/json',  
+                
+            }
+          };
+        },
+      
+      }),
    
     
   }),
 });
 
 export const {
- useGetAllBookingsQuery
+ useGetAllBookingsQuery,
+ useCheckAvailableSlotsMutation
   
 } = bookingApi;

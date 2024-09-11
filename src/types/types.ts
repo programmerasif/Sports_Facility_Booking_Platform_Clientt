@@ -27,6 +27,10 @@ export interface FormValues {
   phone:number
   address:string
 }
+export interface dateFormValues {
+  startTime:string,
+  endTime:string
+}
 export interface TUser {
   name: string,
   email:string,
@@ -39,3 +43,6 @@ export interface TUser {
 export type TInitialState = {
   user: TUser | null; 
 };
+export interface CalendarProps {
+  handlePickDate: (date: Date) => void; // Function prop to handle date selection
+}

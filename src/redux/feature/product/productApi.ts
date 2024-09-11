@@ -82,12 +82,11 @@ const productApi = baseApi.injectEndpoints({
         
         }),
       getSingleProduct: builder.query({
-          query: (data) => {
-            
-            console.log(data);
+          query: (id) => {
+           
             
             return {
-              url: `/facility/${data?.id}`,
+              url: `/facility/${id}`,
               method: "get",
             };
           },   

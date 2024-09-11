@@ -17,6 +17,7 @@ import ManageUsersBooking from "@/UserActivity/ManageBooking/ManageUsersBooking"
 import MyBookings from "@/UserActivity/MyBookings/MyBookings";
 import BookingPage from "@/UserActivity/BookingPage/BookingPage";
 import FacilityDetails from "@/FacilityDetails/FacilityDetails";
+import BookingDetails from "@/UserActivity/BookingDetails/BookingDetails";
 
 
 const routs = createBrowserRouter([
@@ -55,6 +56,10 @@ const routs = createBrowserRouter([
             {
                 path:'/facility-details/:id',
                 element:<FacilityDetails />
+            },
+            {
+                path:'/booking-details/:id',
+                element:<BookingDetails />
             },
         ]
     },
