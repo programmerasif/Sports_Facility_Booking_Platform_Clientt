@@ -14,7 +14,7 @@ const MainLayout = () => {
                 !islogin && !isRegister &&  <Navbr />
             }
            
-            <div className="">
+            <div className="min-h-[60vh]">
             <Outlet />
             </div>
             {

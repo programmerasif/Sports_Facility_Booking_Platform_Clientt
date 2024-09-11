@@ -1,6 +1,8 @@
-import {  IconBrandTabler, IconUserBolt } from "@tabler/icons-react";
+import {  IconBookmarks, IconBrandTabler, IconUserBolt } from "@tabler/icons-react";
+import { Activity } from "lucide-react";
 
-const DashBoardMenu = [
+
+export const AdminDashBoardMenu = [
   {
     label: "Home Page",
     href: "/",
@@ -82,4 +84,31 @@ const DashBoardMenu = [
     ),
   },
 ];
-export default DashBoardMenu;
+
+export const UserDashBoardMenu = [
+  {
+    label: "Home Page",
+    href: "/",
+    icon: <IconBrandTabler className="text-white h-5 w-5 flex-shrink-0" />,
+  },
+  {
+    label: "Manage Profile",
+    href: "manage-user-profile",
+    icon: <IconUserBolt className="text-white h-5 w-5 flex-shrink-0" />
+  },
+  {
+    label: "Manage Booking",
+    href: "manage-users-booking",
+    icon: (
+      <IconBookmarks className="text-white h-5 w-5 flex-shrink-0" />
+    ),
+  },
+  {
+    label: "My Bookings",
+    href: "booked-list",
+    icon: (
+      <IconUserBolt className="text-white h-5 w-5 flex-shrink-0" />
+    ),
+  }
+];
+

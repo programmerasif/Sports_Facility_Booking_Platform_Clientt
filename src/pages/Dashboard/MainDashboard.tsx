@@ -1,14 +1,19 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
-import DashBoardMenu from "@/Const/Dashboardlinks";
+
 import { DashboardLogo } from "@/components/ui/DashboardLogo";
 import DashboardInterface from "../DashboardInterface/DashboardInterface";
 import { useAppSelector } from "@/redux/api/hook";
+import { AdminDashBoardMenu, UserDashBoardMenu } from "@/Const/Dashboardlinks";
+
+
+
 
 const MainDashboard= () => {
   const {user} = useAppSelector(state => state?.user);
   const [open, setOpen] = useState(false);
+  const role = user?.role;
 
   
   return (
@@ -26,9 +31,16 @@ const MainDashboard= () => {
               <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
             </>
             <div className="mt-8 flex flex-col gap-2">
-              {DashBoardMenu.map((link, idx) => (
+              {
+                role == "admin" ? <>
+                {AdminDashBoardMenu.map((link, idx) => (
                 <SidebarLink key={idx} link={link} />
-              ))}
+              ))}</>: <>
+              {UserDashBoardMenu.map((link, idx) => (
+              <SidebarLink key={idx} link={link} />
+            ))}</>
+              }
+              
             </div>
           </div>
           <div>

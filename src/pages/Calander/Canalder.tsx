@@ -15,6 +15,10 @@ import "./calander.css";
 
 const Calendar: React.FC = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date()); // Added state for selected date
+
+  console.log(selectedDate);
+  
 
   const renderHeader = () => {
     return (
@@ -77,12 +81,12 @@ const Calendar: React.FC = () => {
             className={`cell ${
               !isSameMonth(day, monthStart)
                 ? "disabled"
-                : isSameDay(day, new Date())
-                ? "selected"
+                : isSameDay(day, selectedDate)
+                ? "selected" // Highlights the selected date
                 : ""
             }`}
             key={day.toString()}
-            onClick={() => console.log(cloneDay)}
+            onClick={() => setSelectedDate(cloneDay)} // Set the selected date
           >
             <span className="number ">{formattedDate}</span>
           </div>
@@ -104,6 +108,11 @@ const Calendar: React.FC = () => {
       {renderHeader()}
       {renderDays()}
       {renderCells()}
+      <div className="mt-4">
+        <p className="text-center">
+          Selected Date: {format(selectedDate, "MMMM d, yyyy")}
+        </p>
+      </div>
     </div>
   );
 };

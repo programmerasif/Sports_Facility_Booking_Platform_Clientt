@@ -12,6 +12,11 @@ import CreateAdmin from "@/pages/CreateAdmin/CreatAdmin";
 import Contact from "@/pages/Contact/Contact";
 import AboutUs from "@/pages/AboutUs/AboutUs";
 import FacilityManagement from "@/pages/FacalityManagement/FacalityManagement";
+import ManageUserProfile from "@/UserActivity/ManageUserProfile/ManageUserProfile/ManageUserProfile";
+import ManageUsersBooking from "@/UserActivity/ManageBooking/ManageUsersBooking";
+import MyBookings from "@/UserActivity/MyBookings/MyBookings";
+import BookingPage from "@/UserActivity/BookingPage/BookingPage";
+import FacilityDetails from "@/FacilityDetails/FacilityDetails";
 
 
 const routs = createBrowserRouter([
@@ -43,6 +48,14 @@ const routs = createBrowserRouter([
                 path:'/register',
                 element:<Register />
             },
+            {
+                path:'/booking-page',
+                element:<BookingPage />
+            },
+            {
+                path:'/facility-details/:id',
+                element:<FacilityDetails />
+            },
         ]
     },
     {
@@ -64,6 +77,18 @@ const routs = createBrowserRouter([
             {
                 path:'create-admin',
                 element:<CreateAdmin />
+            },
+            {
+                path:'manage-user-profile',
+                element:<ManageUserProfile />
+            },
+            {
+                path:'manage-users-booking',
+                element:<ManageUsersBooking />
+            },
+            {
+                path:'booked-list',
+                element:<MyBookings />
             },
         ]
     }

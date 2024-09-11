@@ -9,6 +9,7 @@ const CommonFacality = ({ facality }) => {
       description: item?.description,
       types: [],
       image: item?.image,
+      id:item?._id
     })) || [];
   return (
     <div>

@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 // import signe from '../../assets/okey.png'
 import { ReactNode, useState } from "react";
+import { NavLink } from "react-router-dom";
 
 export const HoverEffect = ({
   items,
@@ -13,10 +14,15 @@ export const HoverEffect = ({
     description: string;
     types: string[];
     image: string;
+    id:string
   }[];
   className?: string;
 }) => {
   let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+const handelId = (id:string) =>{
+console.log(id);
+
+}
 
   return (
     <div
@@ -53,8 +59,8 @@ export const HoverEffect = ({
             <CardTitle>{[item.title, item?.image]}</CardTitle>
             <CardDescription>{item.description}</CardDescription>
             <div className="flex justify-between items-center pb-4">
-              <div className=" text-[#4a50c9] px-2 py-1 text-sm flex justify-start items-center gap-2 bg-[#4a50c916] rounded-md">
-                <span> Detils</span>
+            <NavLink to={`/facility-details/${item?.id}`}  onClick={() => handelId(item.id)}   className=" text-[#4a50c9] px-2 py-1 text-sm flex justify-start items-center gap-2 bg-[#4a50c916] rounded-md">
+                <span> Details</span>
                 <span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -70,7 +76,7 @@ export const HoverEffect = ({
                   </svg>
                 </span>
                
-              </div>
+              </NavLink>
               <div className="flex justify-center items-center gap-2 font-bold text-[#F7A400]">
                 <span className="">${"50"} </span>
                 <span>
@@ -97,7 +103,7 @@ export const HoverEffect = ({
                 )}
               >
                 <div className="flex justify-start items-center gap-4">
-                  {/* <span> <img src={signe} alt="" /></span> */}
+                 
                   <span>{items}</span>
                 </div>
               </div>

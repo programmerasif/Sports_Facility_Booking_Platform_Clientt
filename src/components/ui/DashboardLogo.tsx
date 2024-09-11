@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
 import logo from '@/assets/logo/logo.png'
+import { useAppSelector } from "@/redux/api/hook";
 export const DashboardLogo = () => {
+  const {user} = useAppSelector(state => state?.user);
+  const role = user?.role;
     return (
       <a
         href="#"
@@ -16,7 +19,11 @@ export const DashboardLogo = () => {
         >
           
         </motion.span>
-          <h5 className="bg-gray-50 font-semibold rounded-sm text-black px-3 py-1">Admin</h5>
+          <h5 className="bg-gray-50 font-semibold rounded-sm text-black px-3 py-1">
+            {
+              role == 'admin' ? "Admin" : "User"
+            }
+            </h5>
           </div>
         
       </a>

@@ -20,7 +20,7 @@ const DashboardFirstLook = () => {
             <div className="p-10 flex flex-col justify-between items-start h-[32vh] w-[50%]">
               <div>
                 <div className=" flex justify-start items-center gap-2">
-                  <div className="text-sm md:text-base">Sunney day</div>
+                  <div className="text-sm md:text-base">Sunny day</div>
                   <div>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

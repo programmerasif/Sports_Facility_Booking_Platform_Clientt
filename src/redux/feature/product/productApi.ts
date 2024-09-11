@@ -81,6 +81,17 @@ const productApi = baseApi.injectEndpoints({
           },
         
         }),
+      getSingleProduct: builder.query({
+          query: (data) => {
+            
+            console.log(data);
+            
+            return {
+              url: `/facility/${data?.id}`,
+              method: "get",
+            };
+          },   
+        }),
    
     
   }),
@@ -90,5 +101,6 @@ export const {
   useGetProductsQuery,
   useDeleteProductsMutation,
   useCreateProductsMutation,
-  useUpdateProductsMutation
+  useUpdateProductsMutation,
+ useGetSingleProductQuery
 } = productApi;
