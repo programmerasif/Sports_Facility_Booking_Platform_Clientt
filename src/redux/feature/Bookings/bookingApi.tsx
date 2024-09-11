@@ -56,6 +56,29 @@ const bookingApi = baseApi.injectEndpoints({
         },
       
       }),
+    createBookings: builder.mutation({
+      
+        query: ({ token, date,facilityId,startTime,endTimes}) => {
+          
+          
+          return {
+            url: `bookings`,
+            method: "GET",
+            body:{
+              date,
+              startTime:startTime,
+              endTime:endTimes,
+              facility:facilityId
+          },
+            headers: {
+                Authorization: `${token}`, 
+                'Content-Type': 'application/json',  
+                
+            }
+          };
+        },
+      
+      }),
    
     
   }),
@@ -63,6 +86,7 @@ const bookingApi = baseApi.injectEndpoints({
 
 export const {
  useGetAllBookingsQuery,
- useCheckAvailableSlotsMutation
+ useCheckAvailableSlotsMutation,
+ useCreateBookingsMutation
   
 } = bookingApi;

@@ -1,12 +1,13 @@
 import { BottomGradient } from "@/components/ui/BottomGradient"
 import { Input } from "@/components/ui/input"
 import { LabelInputContainer } from "@/components/ui/LabelInputContainer"
+import { getTodayDate } from "@/conostant"
 import Calendar from "@/pages/Calander/Canalder"
 import { useAppSelector } from "@/redux/api/hook"
 import { useCheckAvailableSlotsMutation} from "@/redux/feature/Bookings/bookingApi"
 import { useGetSingleProductQuery } from "@/redux/feature/product/productApi"
 import { dateFormValues } from "@/types/types"
-import { useState } from "react"
+import { SetStateAction, useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { useParams } from "react-router-dom"
 import { Label } from "recharts"
@@ -15,10 +16,12 @@ const BookingDetails = () =>{
     const [isOpen,setOpen] = useState(false)
     const {id}= useParams()
     const {data} = useGetSingleProductQuery(id)
-    const [date,setDate] = useState('')
+    const [date,setDate] = useState(getTodayDate())
     const { user } = useAppSelector((state) => state?.user);
     const token = user?.token;
     const [checkAvailableSlot,{data:availableSlot}] = useCheckAvailableSlotsMutation()
+    const [startTime,setStartTime] = useState('')
+    const [endTime,setEndTime] = useState('')
     const {
         register,
         handleSubmit,
@@ -26,10 +29,12 @@ const BookingDetails = () =>{
       } = useForm<dateFormValues>();
     
 
+
     
-const handlePickDate = (date: Date) => {
+const handlePickDate = (selectedDate: Date) => {
   
-  const time = new Date(date);
+  
+  const time = new Date(selectedDate);
  
   time.setDate(time.getDate() );
   
@@ -44,17 +49,21 @@ const handlePickDate = (date: Date) => {
     const handelSlotCheck = async() =>{
       await checkAvailableSlot({token,date,facilityId:id})   
     }
-    const handelSelectedDate = (startTime,endTime) =>{
-        console.log(startTime,endTime);
-        
+    const handelSelectedDate = (startTime: SetStateAction<string>,endTime: SetStateAction<string>) =>{
+        setStartTime(startTime)
+        setEndTime(endTime)
     }
     
     
     const onSubmit: SubmitHandler<dateFormValues> = async (data) => {
-        console.log(data);
-        
-        
+        const startTime = (data.startTime);
+        setStartTime(startTime)
+        const endTime = (data.endTime);
+        setEndTime(endTime)
       };
+      console.log(startTime,endTime);
+      
+      
     return(
         <div className="pt-24 h-full w-full mx-auto px-4 sm:px-8 md:px-10 lg:px-20 xl:px-32">
         <div className="flex flex-col lg:flex-row items-center lg:items-center mx-auto mt-8 mb-20 rounded-lg w-full gap-20 py-50" >
@@ -120,7 +129,7 @@ const handlePickDate = (date: Date) => {
             
 
             <LabelInputContainer>
-                <Label htmlFor="startTime">Start Date</Label>
+                <Label htmlFor="startTime">Start Time</Label>
                 <Input
                 className="bg-white"
                   id="startTime"
@@ -131,7 +140,7 @@ const handlePickDate = (date: Date) => {
                 {errors.startTime && <p className="text-red-600">{errors.startTime.message}</p>}
               </LabelInputContainer>
             <LabelInputContainer>
-                <Label htmlFor="endTime">End Time</Label>
+                <Label htmlFor="endTime">Start Time</Label>
                 <Input
                 className="bg-white"
                   id="endTime"
@@ -141,6 +150,7 @@ const handlePickDate = (date: Date) => {
                 />
                 {errors.endTime && <p className="text-red-600">{errors.endTime.message}</p>}
               </LabelInputContainer>
+            
 
             <button
               className="bg-gradient-to-br relative group/btn bg-[#24287a] w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
