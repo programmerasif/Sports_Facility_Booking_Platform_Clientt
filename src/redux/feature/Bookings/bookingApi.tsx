@@ -58,16 +58,17 @@ const bookingApi = baseApi.injectEndpoints({
       }),
     createBookings: builder.mutation({
       
-        query: ({ token, date,facilityId,startTime,endTimes}) => {
+        query: ({ token, date,facilityId,startTime,endTime}) => {
+          
           
           
           return {
             url: `bookings`,
-            method: "GET",
+            method: "post",
             body:{
               date,
               startTime:startTime,
-              endTime:endTimes,
+              endTime:endTime,
               facility:facilityId
           },
             headers: {
@@ -97,6 +98,56 @@ const bookingApi = baseApi.injectEndpoints({
         },
       
       }),
+    usersBookings: builder.query({
+      
+      query: ({ token, args }) => {
+        console.log(token);
+        
+        
+        if (!token) {
+          console.log('token missing');
+          
+        }
+        const params = new URLSearchParams();
+
+        if (args) {
+          args.forEach((item: TQueryParam) => {
+            params.append(item.name, item.value as string);
+          });
+        }
+
+        
+        return {
+          url: "bookings/user",
+          method: "GET",
+          params: params,
+          headers: {
+              Authorization: `${token}`, 
+              'Content-Type': 'application/json',  
+              
+          }
+        };
+      },
+    
+    }),
+    cancelBooking: builder.mutation({
+      
+      query: ({ token,id}) => {
+      
+
+        
+        return {
+          url: `/bookings/${id}`,
+          method: "delete",
+          headers: {
+              Authorization: `${token}`, 
+              'Content-Type': 'application/json',  
+              
+          }
+        };
+      },
+    
+    }),
    
     
   }),
@@ -106,6 +157,8 @@ export const {
  useGetAllBookingsQuery,
  useCheckAvailableSlotsMutation,
  useCreateBookingsMutation,
- useCheckedReqTimeMutation
+ useCheckedReqTimeMutation,
+ useUsersBookingsQuery,
+ useCancelBookingMutation
   
 } = bookingApi;

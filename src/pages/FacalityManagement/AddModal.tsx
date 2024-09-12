@@ -28,7 +28,7 @@ const AddModal = () => {
     formState: { errors },
     reset,
   } = useForm<FormData>();
-//   const [addProduct] = useAddProductMutation();
+
 const [createFacility] = useCreateProductsMutation()
   interface FormData {
     

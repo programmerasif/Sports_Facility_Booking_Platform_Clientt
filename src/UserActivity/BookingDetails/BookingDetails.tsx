@@ -4,11 +4,11 @@ import { useAppSelector } from "@/redux/api/hook";
 import { useCheckAvailableSlotsMutation, useCheckedReqTimeMutation } from "@/redux/feature/Bookings/bookingApi";
 import { useGetSingleProductQuery } from "@/redux/feature/product/productApi";
 import {  useState } from "react";
-import { useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import TimePicker from "react-time-picker";
 import "react-time-picker/dist/TimePicker.css";
 import 'react-clock/dist/Clock.css';
-import PaymentModal from "@/pages/PaymentModal/PaymentModal";
+// import PaymentModal from "@/pages/PaymentModal/PaymentModal";
 // import PaymentModal from "@/pages/PaymentModal/PaymentModal";
 
 const BookingDetails = () => {
@@ -22,6 +22,7 @@ const BookingDetails = () => {
     const [isSlotAvailable,{data:isSlotAvailableDB}] = useCheckedReqTimeMutation()
     const [selectedStartTime, setSelectedStartTime] = useState("10:00");
     const [selectedEndTime, setSelectedEndTime] = useState("11:00");
+    const navigate = useNavigate();
 
     const handlePickDate = (selectedDate: Date) => {
         const time = new Date(selectedDate);
@@ -53,6 +54,14 @@ const BookingDetails = () => {
 
         // Perform additional logic here with start and end times, like making an API request
         await isSlotAvailable({startTime:selectedStartTime,endTime: selectedEndTime, facilityId: id})
+        navigate('/payment', { state: { slotDetails: { 
+            token, 
+            date, 
+            facilityId: id, 
+             startTime:selectedStartTime, 
+               endTime:selectedEndTime,
+               facilityDetails: data?.data
+            } } });
     };
 console.log(isSlotAvailableDB);
 
@@ -149,12 +158,12 @@ console.log(isSlotAvailableDB);
                             </div>
 
                             {/* Submit Button */}
-                            <button
+                            <NavLink to={'/payment'}
                                 className="mt-4 text-gray-100 py-2 px-6 rounded-lg w-full transition bg-[#4a50c9]"
                                 onClick={handleSubmit}
                             >
-                                <PaymentModal isAvailable={isSlotAvailableDB?.data?.available}/>
-                            </button>
+                               Select slot
+                            </NavLink>
                         </div>
                     </div>
                 </div>

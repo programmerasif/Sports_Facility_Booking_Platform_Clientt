@@ -25,26 +25,26 @@ const FacilityDetails = () =>{
   </div>
 
   
-  <div className="lg:w-1/2 w-full flex flex-col justify-center items-start gap-4 bg-gradient-to-r from-[#2d3298] to-[#4a50c9]  h-[27rem]  px-5 rounded-md">
-    <h2 className="text-2xl font-bold text-white">
+  <div className="lg:w-1/2 w-full flex flex-col justify-center items-start gap-4   h-[27rem]  px-5 rounded-md">
+    <h2 className="text-2xl font-bold text-gray-900">
         {
             data?.data?.name
         }
     </h2>
-    <p className="text-gray-100"><strong>Location: </strong> 
+    <p className="text-gray-900"><strong>Location: </strong> 
     {
             data?.data?.location
         }
     </p>
-    <p className="text-gray-100"><strong>Price: </strong>$ {data?.data?.pricePerHour} per hour</p>
-    <p className="text-gray-100">
+    <p className="text-gray-900"><strong>Price: </strong>$ {data?.data?.pricePerHour} per hour</p>
+    <p className="text-gray-900">
         {
            data?.data?.description
         }
     </p>
     
    
-    <NavLink to={`/booking-details/${data?.data?._id}`} className="mt-4 bg-gray-100 text-gray-900  py-2 px-6 rounded-lg hover:bg-gray-50 transition">
+    <NavLink to={`/booking-details/${data?.data?._id}`} className="mt-4 bg-[#4a50c9] text-gray-100  py-2 px-6 rounded-lg hover:bg-[#656acc] transition">
       Book Now
     </NavLink>
   </div>
