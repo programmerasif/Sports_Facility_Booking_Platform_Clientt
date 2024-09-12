@@ -1,15 +1,42 @@
 
 
+import { useAppSelector } from "@/redux/api/hook"
 import { useGetSingleProductQuery } from "@/redux/feature/product/productApi"
-import { NavLink, useParams } from "react-router-dom"
+import { useParams,useNavigate } from "react-router-dom"
+import Swal from "sweetalert2"
+
 
 const FacilityDetails = () =>{
     const {id} = useParams()
-   
     const {data} = useGetSingleProductQuery(id)
+    const navigate = useNavigate();
+    const { user } = useAppSelector((state) => state?.user);
+    const token = user?.token;
    
     
    console.log(data?.data?.image);
+   const handleBooking = () => {
+    
+    if (token) {
+      
+      navigate(`/booking-details/${data?.data?._id}`);
+    } else {
+      Swal.fire({
+        title: "Please Sign-in or Sign-up",
+        text: "To Book this Facility You have to Login First",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Login"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate(`/login`);
+        }
+      });
+      
+    }
+  };
    
     return(
         <div className="pt-24 h-full w-full mx-auto px-4 sm:px-8 md:px-10 lg:px-20 xl:px-32">
@@ -44,9 +71,9 @@ const FacilityDetails = () =>{
     </p>
     
    
-    <NavLink to={`/booking-details/${data?.data?._id}`} className="mt-4 bg-[#4a50c9] text-gray-100  py-2 px-6 rounded-lg hover:bg-[#656acc] transition">
+    <button onClick={handleBooking}  className="mt-4 bg-[#4a50c9] text-gray-100  py-2 px-6 rounded-lg hover:bg-[#656acc] transition">
       Book Now
-    </NavLink>
+    </button>
   </div>
 
             </div>

@@ -19,89 +19,95 @@ import BookingPage from "@/UserActivity/BookingPage/BookingPage";
 import FacilityDetails from "@/FacilityDetails/FacilityDetails";
 import BookingDetails from "@/UserActivity/BookingDetails/BookingDetails";
 import Payment from "@/pages/Payment/Payment";
+import NotFoundPage from "@/pages/NotFoundPage/NotFoundPage";
 
 
 const routs = createBrowserRouter([
     {
-        path:'/',
-        element:<MainLayout />,
-        children:[
+        path: '/',
+        element: <MainLayout />,
+        children: [
             {
-                path:'/',
-                element:<Home />
+                path: '/',
+                element: <Home />
             },
             {
-                path:'/facality',
-                element:<Facality />
+                path: '/facality',
+                element: <Facality />
             },
             {
-                path:'/contact',
-                element:<Contact />
+                path: '/contact',
+                element: <Contact />
             },
             {
-                path:'/about-us',
-                element:<AboutUs />
+                path: '/about-us',
+                element: <AboutUs />
             },
             {
-                path:'/login',
-                element:<Login />
+                path: '/login',
+                element: <Login />
             },
             {
-                path:'/register',
-                element:<Register />
+                path: '/register',
+                element: <Register />
             },
             {
-                path:'/booking-page',
-                element:<BookingPage />
+                path: '/booking-page',
+                element: <BookingPage />
             },
             {
-                path:'/facility-details/:id',
-                element:<FacilityDetails />
+                path: '/facility-details/:id',
+                element: <FacilityDetails />
             },
             {
-                path:'/booking-details/:id',
-                element:<BookingDetails />
+                path: '/booking-details/:id',
+                element: <BookingDetails />
             },
             {
-                path:'/payment',
-                element:<Payment />
+                path: '/payment',
+                element: <Payment />
             },
         ]
     },
     {
         path: '/dashboard',
         element: <MainDashboard />,
-        children:[
+        children: [
             {
-                path:'manage-user',
-                element:<ManageUser/>
+                path: 'manage-user',
+                element: <ManageUser />
             },
             {
-                path:'booking-management',
-                element:<BookingManagement/>
+                path: 'booking-management',
+                element: <BookingManagement />
             },
             {
-                path:'facality-management',
-                element:<FacilityManagement/>
+                path: 'facality-management',
+                element: <FacilityManagement />
             },
             {
-                path:'create-admin',
-                element:<CreateAdmin />
+                path: 'create-admin',
+                element: <CreateAdmin />
             },
             {
-                path:'manage-user-profile',
-                element:<ManageUserProfile />
+                path: 'manage-user-profile',
+                element: <ManageUserProfile />
             },
             {
-                path:'manage-users-booking',
-                element:<ManageUsersBooking />
+                path: 'manage-users-booking',
+                element: <ManageUsersBooking />
             },
             {
-                path:'booked-list',
-                element:<MyBookings />
+                path: 'booked-list',
+                element: <MyBookings />
             },
         ]
+    },
+    // Universal 404 Route
+    {
+        path: '*',
+        element: <NotFoundPage /> 
     }
-])
+]);
 
-export default routs
+export default routs;

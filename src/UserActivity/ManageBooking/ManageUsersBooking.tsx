@@ -55,10 +55,7 @@ const [cancelBooking] = useCancelBookingMutation()
         }
       });  
   }
-  const handelView = (id:string) =>{
-   
-    
-  }
+  
     return (
         <div className="sm:px-6 lg:px-20 mt-20 md:mt-28 ">
           <div className="flex sm:flex-col md:flex-row justify-between items-center mb-10 border rounded-md p-2">

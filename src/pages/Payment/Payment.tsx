@@ -9,6 +9,8 @@ const Payment = () =>{
     const slotDetails = location.state?.slotDetails;
     const [makePayment] = useCreateBookingsMutation()
     const [isLoading,setLoading] = useState(false)
+    console.log(slotDetails?.facilityDetails?.description);
+    
     const handlePayment = async () => {
         try {
             setLoading(true)
@@ -53,27 +55,32 @@ const Payment = () =>{
   </div>
             {/* Right side  */}
             <div className=" w-full xl:w-[50%] mx-auto bg-[#EBF5FB] shadow-lg rounded-lg p-6 space-y-4">
+            <div className="flex justify-between items-start pb-4">
             <h2 className="text-2xl font-bold text-gray-800">Payment Details</h2>
+            <h2 className="text-2xl font-bold text-gray-800">
+                {slotDetails?.date}
+            </h2>
+            </div>
 
             <div className="flex flex-col md:flex-row justify-between space-y-2 md:space-y-0">
                 <div>
                     <p className="text-gray-500">Product Name:</p>
-                    <p className="text-lg font-semibold text-gray-900">Tennis Court Booking</p>
+                    <p className="text-lg font-semibold text-gray-900">{slotDetails?.facilityDetails?.name}</p>
                 </div>
                 <div>
                     <p className="text-gray-500">Amount to Pay:</p>
-                    <p className="text-lg font-semibold text-gray-900">$50</p>
+                    <p className="text-lg font-semibold text-gray-900">$ {slotDetails?.facilityDetails?.pricePerHour} Per Hour</p>
                 </div>
             </div>
 
             <div className="flex flex-col md:flex-row justify-between space-y-2 md:space-y-0">
                 <div>
                     <p className="text-gray-500">Start Time:</p>
-                    <p className="text-lg font-semibold text-gray-900">10:00 AM</p>
+                    <p className="text-lg font-semibold text-gray-900">{slotDetails?.startTime}</p>
                 </div>
                 <div>
                     <p className="text-gray-500">End Time:</p>
-                    <p className="text-lg font-semibold text-gray-900">12:00 PM</p>
+                    <p className="text-lg font-semibold text-gray-900">{slotDetails?.endTime}</p>
                 </div>
             </div>
 
