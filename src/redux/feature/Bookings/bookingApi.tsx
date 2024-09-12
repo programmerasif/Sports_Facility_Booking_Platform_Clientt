@@ -79,6 +79,24 @@ const bookingApi = baseApi.injectEndpoints({
         },
       
       }),
+    checkedReqTime: builder.mutation({
+      
+        query: ({  date,facilityId,startTime,endTimes}) => {
+          
+          
+          return {
+            url: `checkSlotAvailableOrNot`,
+            method: "post",
+            body:{
+              date,
+              startTime:startTime,
+              endTime:endTimes,
+              facility:facilityId
+          }
+          };
+        },
+      
+      }),
    
     
   }),
@@ -87,6 +105,7 @@ const bookingApi = baseApi.injectEndpoints({
 export const {
  useGetAllBookingsQuery,
  useCheckAvailableSlotsMutation,
- useCreateBookingsMutation
+ useCreateBookingsMutation,
+ useCheckedReqTimeMutation
   
 } = bookingApi;
