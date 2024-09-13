@@ -4,10 +4,11 @@ import { useAppSelector } from "@/redux/api/hook";
 import { useCheckAvailableSlotsMutation, useCheckedReqTimeMutation } from "@/redux/feature/Bookings/bookingApi";
 import { useGetSingleProductQuery } from "@/redux/feature/product/productApi";
 import {  useState } from "react";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import {useNavigate, useParams } from "react-router-dom";
 import TimePicker from "react-time-picker";
 import "react-time-picker/dist/TimePicker.css";
 import 'react-clock/dist/Clock.css';
+import Swal from "sweetalert2";
 // import PaymentModal from "@/pages/PaymentModal/PaymentModal";
 // import PaymentModal from "@/pages/PaymentModal/PaymentModal";
 
@@ -19,7 +20,7 @@ const BookingDetails = () => {
     const { user } = useAppSelector((state) => state?.user);
     const token = user?.token;
     const [checkAvailableSlot, { data: availableSlot }] = useCheckAvailableSlotsMutation();
-    const [isSlotAvailable,{data:isSlotAvailableDB}] = useCheckedReqTimeMutation()
+    const [isSlotAvailable] = useCheckedReqTimeMutation()
     const [selectedStartTime, setSelectedStartTime] = useState("10:00");
     const [selectedEndTime, setSelectedEndTime] = useState("11:00");
     const navigate = useNavigate();
@@ -45,15 +46,16 @@ const BookingDetails = () => {
         setSelectedStartTime(slotStartTime);
         setSelectedEndTime(slotEndTime);
     };
-    console.log(isSlotAvailableDB?.data?.available);
+   
     
 
     const handleSubmit = async() => {
-        console.log("Selected Start Time:", selectedStartTime);
-        console.log("Selected End Time:", selectedEndTime);
+        
 
         // Perform additional logic here with start and end times, like making an API request
-        await isSlotAvailable({startTime:selectedStartTime,endTime: selectedEndTime, facilityId: id})
+       const res =  await isSlotAvailable({startTime:selectedStartTime,endTime: selectedEndTime, facilityId: id})
+        
+       if (res?.data?.data?.available) {
         navigate('/payment', { state: { slotDetails: { 
             token, 
             date, 
@@ -62,8 +64,20 @@ const BookingDetails = () => {
                endTime:selectedEndTime,
                facilityDetails: data?.data
             } } });
+       }
+       else{
+        Swal.fire({
+            position: "center",
+            icon: "warning",
+            title: "Opps! Requested Time is not available",
+            showConfirmButton: false,
+            timer: 1500
+          });
+       }
+        
+     
     };
-console.log(isSlotAvailableDB);
+
 
 
     return (
@@ -156,12 +170,12 @@ console.log(isSlotAvailableDB);
                             </div>
 
                             {/* Submit Button */}
-                            <NavLink to={'/payment'}
-                                className="mt-4 text-gray-100 py-2 px-6 rounded-lg w-full transition bg-[#4a50c9]"
+                            <button 
+                                className="mt-4 text-gray-100 py-2 text-center px-6 rounded-lg w-full transition bg-[#4a50c9]"
                                 onClick={handleSubmit}
                             >
                                Select slot
-                            </NavLink>
+                            </button>
                         </div>
                     </div>
                 </div>

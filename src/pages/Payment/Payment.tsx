@@ -9,7 +9,7 @@ const Payment = () =>{
     const slotDetails = location.state?.slotDetails;
     const [makePayment] = useCreateBookingsMutation()
     const [isLoading,setLoading] = useState(false)
-    console.log(slotDetails?.facilityDetails?.description);
+
     
     const handlePayment = async () => {
         try {

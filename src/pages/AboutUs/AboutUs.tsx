@@ -9,7 +9,7 @@ const AboutUs = () => {
               <div className="flex flex-col gap-y-8 xl:flex-row items-center max-w-6xl mx-auto mt-8 mb-20 rounded-lg ">
                 <div className="ml-9 xl:ml-0">
                   <h2 className="font-manrope text-5xl font-bold text-gray-900 mb-6 ">About Us</h2>
-                  <p className="text-md xl:text-lg text-gray-500 font-sans w-10/12">Welcome to Switch, the ultimate destination for mechanical keyboard enthusiasts and professionals alike. Our passion for high-quality, customizable, and durable keyboards drives us to provide the best products and services to our customers.</p>
+                  <p className="text-md xl:text-lg text-gray-500 font-sans w-10/12">Welcome to GamSpace, GameSpace makes sports facility booking quick and easy. Reserve courts and fields for your favorite sports with just a few clicks. Enjoy seamless scheduling, transparent pricing, and exclusive offers at GameSpace, your go-to platform for all sports activities.</p>
                 </div>
                 <div className="w-10/12 h-[50vh]">
                   <img className="hover:translate-x-2 h-full duration-500 hover:scale-105 rounded-xl object-cover" src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />

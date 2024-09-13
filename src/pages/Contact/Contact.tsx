@@ -79,7 +79,7 @@ const Contact = () => {
                           Phone Number
                         </h4>
                         <p className="text-base text-body-color dark:text-dark-6">
-                          (+62)81 414 257 9980
+                          (+880) 172 152 0 848
                         </p>
                       </div>
                     </div>
