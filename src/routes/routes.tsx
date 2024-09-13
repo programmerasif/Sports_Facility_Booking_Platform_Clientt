@@ -20,6 +20,8 @@ import FacilityDetails from "@/FacilityDetails/FacilityDetails";
 import BookingDetails from "@/UserActivity/BookingDetails/BookingDetails";
 import Payment from "@/pages/Payment/Payment";
 import NotFoundPage from "@/pages/NotFoundPage/NotFoundPage";
+import AdminPrivateRouts from "@/PrivateRouts/AdminPrivateRouts";
+import UserPrivateRouts from "@/PrivateRouts/UserPrivateRouts";
 
 
 const routs = createBrowserRouter([
@@ -53,7 +55,8 @@ const routs = createBrowserRouter([
             },
             {
                 path: '/booking-page',
-                element: <BookingPage />
+                element: <UserPrivateRouts><BookingPage /></UserPrivateRouts>
+                
             },
             {
                 path: '/facility-details/:id',
@@ -61,11 +64,13 @@ const routs = createBrowserRouter([
             },
             {
                 path: '/booking-details/:id',
-                element: <BookingDetails />
+                element: <UserPrivateRouts><BookingDetails /></UserPrivateRouts>
+                
             },
             {
                 path: '/payment',
-                element: <Payment />
+                element:<UserPrivateRouts><Payment /></UserPrivateRouts>
+                 
             },
         ]
     },
@@ -75,31 +80,47 @@ const routs = createBrowserRouter([
         children: [
             {
                 path: 'manage-user',
-                element: <ManageUser />
+                element:<AdminPrivateRouts>
+                    <ManageUser />
+                </AdminPrivateRouts>
+                
+                
             },
             {
                 path: 'booking-management',
-                element: <BookingManagement />
+                element: <AdminPrivateRouts>
+                <BookingManagement />
+            </AdminPrivateRouts>
+                
             },
             {
                 path: 'facality-management',
-                element: <FacilityManagement />
+                element:<AdminPrivateRouts>
+                <FacilityManagement />
+            </AdminPrivateRouts>
+                 
             },
             {
                 path: 'create-admin',
-                element: <CreateAdmin />
+                element: 
+                <AdminPrivateRouts>
+                <CreateAdmin />
+            </AdminPrivateRouts>
             },
             {
                 path: 'manage-user-profile',
-                element: <ManageUserProfile />
+                element: <UserPrivateRouts><ManageUserProfile /></UserPrivateRouts>
+                
             },
             {
                 path: 'manage-users-booking',
-                element: <ManageUsersBooking />
+                element: <UserPrivateRouts><ManageUsersBooking /></UserPrivateRouts>
+                
             },
             {
                 path: 'booked-list',
-                element: <MyBookings />
+                element: <UserPrivateRouts><MyBookings /></UserPrivateRouts>
+                
             },
         ]
     },

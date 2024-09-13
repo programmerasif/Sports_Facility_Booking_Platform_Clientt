@@ -50,7 +50,7 @@ const MainDashboard= () => {
                 href: "#",
                 icon: (
                   <img
-                    src="https://assets.aceternity.com/manu.png"
+                    src={user?.image || 'https://i.ibb.co.com/1fsKYRf/3237472.png'}
                     className="h-7 w-7 flex-shrink-0 rounded-full"
                     width={50}
                     height={50}
