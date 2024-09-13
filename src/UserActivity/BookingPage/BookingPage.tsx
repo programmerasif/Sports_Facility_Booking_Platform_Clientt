@@ -14,6 +14,7 @@ const BookingPage = () =>{
         setPage(page - 1)
        }
        
+      console.log(data);
       
       const handlePaginateNext = () =>{
         if (data?.data?.hasMore) {

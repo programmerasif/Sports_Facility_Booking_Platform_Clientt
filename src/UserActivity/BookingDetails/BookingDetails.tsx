@@ -129,15 +129,12 @@ console.log(isSlotAvailableDB);
                                     Start Time:
                                 </label>
                                 <TimePicker
-                                    onClick={() => {
-                                        console.log("Start Time Input Clicked");
-                                    }}
-                                    onChange={(time) => setSelectedStartTime(time)}
-                                    value={selectedStartTime}
-                                    disableClock={false}
-                                    format="h:mm a"
-                                    className="text-lg p-3 border border-gray-300 rounded-lg w-full"
-                                />
+                                          onChange={(time: string | null) => time && setSelectedStartTime(time)}
+                                          value={selectedStartTime}
+                                         disableClock={false}
+                                        format="h:mm a"
+                                         className="text-lg p-3 border border-gray-300 rounded-lg w-full"
+                                    />
                             </div>
 
                             {/* End Time Picker */}
@@ -149,12 +146,13 @@ console.log(isSlotAvailableDB);
                                     onClick={() => {
                                         console.log("End Time Input Clicked");
                                     }}
-                                    onChange={(time) => setSelectedEndTime(time)}
+                                    onChange={(time) =>time && setSelectedEndTime(time)}
                                     value={selectedEndTime}
                                     disableClock={false}
                                     format="h:mm a"
                                     className="text-lg p-3 border border-gray-300 rounded-lg w-full"
                                 />
+                                
                             </div>
 
                             {/* Submit Button */}

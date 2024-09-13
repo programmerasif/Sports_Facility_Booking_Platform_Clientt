@@ -135,7 +135,7 @@ const [cancelBooking] = useCancelBookingMutation()
                       </div>
                     </TableCell>
                     <TableCell>
-                      <div onClick={()=>handelView(item._id)} className="font-bold text-balance text-[#262626e5] bg-[#EBF5FB] py-2 text-gray-500 flex justify-center items-center rounded-md">
+                      <div className="font-bold text-balance text-[#262626e5] bg-[#EBF5FB] py-2 text-gray-500 flex justify-center items-center rounded-md">
             
                       <ViewDetailsModal modalData={{status:item?.isBooked,price:item?.payableAmount,description:item?.facility.description,img:item?.facility?.image,name:item?.facility?.name}}/>
                       </div>

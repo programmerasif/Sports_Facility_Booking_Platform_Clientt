@@ -1,7 +1,8 @@
-import Calendar from "@/pages/Calander/Canalder";
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import welcome from "../assets/wellcom.png";
 import { useGetProductsQuery } from "@/redux/feature/product/productApi";
 import CommonFacality from "@/ComoneComponent/CommonFacality";
+import Calendar from "@/pages/Calander/Canalder";
 
 const DashboardFirstLook = () => {
     const today = new Date();
@@ -48,7 +49,11 @@ const DashboardFirstLook = () => {
           </div>
         </div>
         <div className="w-[30%] hidden 2xl:block">
-          <Calendar />
+          <Calendar handlePickDate={function (date: Date): void {
+            console.log(date);
+            
+            throw new Error("Function not implemented.");
+          } } />
         </div>
       </div>
       <div className="bg-gradient-to-r from-transparent via-neutral-700 to-transparent my-5 h-[1px] w-full" />
