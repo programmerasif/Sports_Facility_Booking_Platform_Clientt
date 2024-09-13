@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useAppSelector } from "@/redux/api/hook";
 import { useNavigate } from "react-router-dom";
 
 
-const UserPrivateRouts = ({children}) =>{
+const UserPrivateRouts = ({children}:any) =>{
     const { user } = useAppSelector((state) => state?.user);
     const navigate = useNavigate();
     const token = user?.token;
