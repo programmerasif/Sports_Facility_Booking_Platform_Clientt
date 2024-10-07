@@ -14,7 +14,7 @@ const FacilityDetails = () =>{
     const token = user?.token;
    
     
-   console.log(data?.data?.image);
+   
    const handleBooking = () => {
     
     if (token) {

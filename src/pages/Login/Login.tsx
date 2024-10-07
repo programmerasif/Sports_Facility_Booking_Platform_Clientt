@@ -11,6 +11,7 @@ import { setUserInfo } from "@/redux/feature/userInfo/userInfoSlice";
 import { useAppDispatch } from "@/redux/api/hook";
 import Lottie from "lottie-react";
 import login from '../../assets/login.json'
+import Swal from "sweetalert2";
 
 
 const Login: React.FC = () => {
@@ -21,6 +22,7 @@ const Login: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm<FormValues>();
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
@@ -43,11 +45,23 @@ const Login: React.FC = () => {
           address:res?.data?.data?.address,
           token:token
       }
-      console.log(res, " login response");
       
-      navigate('/dashboard');
+      
+    if (res.error) {
+      Swal.fire({
+        position: "center",
+        icon: "warning",
+        title: "Email or password is wrong. Please try Again",
+        showConfirmButton: false,
+        timer: 1800
+      });
+      reset()
+    }else{
       dispatch(setUserInfo(user))
-     
+      navigate('/dashboard');
+      
+    }
+
     } catch (error) {
       console.error(error);
     }

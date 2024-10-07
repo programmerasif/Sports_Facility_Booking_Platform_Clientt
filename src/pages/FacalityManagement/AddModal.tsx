@@ -44,7 +44,7 @@ const [createFacility] = useCreateProductsMutation()
   const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
     if (Object.keys(errors).length === 0) {
       
-      console.log("Form data:", data);
+     
       const API_KEY = "4794790c9ff21535c43001d589261473";
       const file = data.image[0];
       const formData = new FormData();
@@ -80,7 +80,7 @@ const [createFacility] = useCreateProductsMutation()
             timer: 1500,
           });
         }
-        console.log(res);
+        
       } else {
         console.error("Upload failed:", result);
         setLoading(false)

@@ -32,13 +32,15 @@ import { useState } from "react";
         { name: "limit", value: "4" },
         { name: "sort", value: 'name' },
       ],
+    },{
+      pollingInterval: 1000,
     });
-  console.log(bookings);
+ 
   
   const handlePaginatePrev = () =>{
     setPage(page - 1)
    }
-  console.log(bookings?.data,"booking");
+ 
   
   const handlePaginateNext = () =>{
     if (bookings?.data?.hasMore) {

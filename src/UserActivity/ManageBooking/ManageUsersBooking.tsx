@@ -20,6 +20,8 @@ const ManageUsersBooking = () =>{
       { name: "limit", value: "4" },
       { name: "sort", value: 'name' },
     ],
+  },{
+    pollingInterval: 1000,
   });
 
 const [cancelBooking] = useCancelBookingMutation()

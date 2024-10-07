@@ -39,13 +39,13 @@ const [updateFacility] = useUpdateProductsMutation()
     category:string,
     image: FileList;
   }
-console.log(singleItem);
+
 
   
   const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
     if (Object.keys(errors).length === 0) {
       
-      console.log("Form data:", data);
+      
       const API_KEY = "4794790c9ff21535c43001d589261473";
       const file = data.image[0];
       const formData = new FormData();
@@ -72,16 +72,7 @@ console.log(singleItem);
         
         setLoading(true)
         const res = await updateFacility({id:singleItem?._id,token,updatedFacilityData}).unwrap();
-        // if (res.success) {
-        //   setLoading(false)
-        //   Swal.fire({
-        //     position: "center",
-        //     icon: "success",
-        //     title: "Added Product SucessFully",
-        //     showConfirmButton: false,
-        //     timer: 1500,
-        //   });
-        // }
+       
         console.log(res);
       } else {
         console.error("Upload failed:", result);

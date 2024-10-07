@@ -4,7 +4,7 @@ import CommonFacality from "@/ComoneComponent/CommonFacality";
 // ];
 
 const TopFacalitys = () => {
-  const { data } = useGetProductsQuery([
+  const { data,isLoading} = useGetProductsQuery([
     { name: "page", value: "1" },
     { name: "limit", value: "8" },
     { name: "sort", value: 'name' },
@@ -21,13 +21,13 @@ const TopFacalitys = () => {
             <span className="text-[#F7A400]"> Facilities</span>
           </h2>
         </div>
-        <p className="mt-3 pb-10 text-sm md:text-base text-gray-600 max-w-3xl mx-auto flex justify-center items-center">
+        <p className="mt-3 pb-10 text-sm md:text-base text-gray-600 max-w-3xl mx-auto flex justify-center text-center items-center">
           Discover our top sports facilities, carefully chosen
           for their quality and variety. Whether you're into football,
           basketball, cricket, or other activities, find the ideal space to
           play, train, or compete.
         </p>
-      <CommonFacality  facality={data}/>
+      <CommonFacality  facality={data} isLoading={isLoading}/>
     </div>
   </div>
   );

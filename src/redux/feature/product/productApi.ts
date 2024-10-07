@@ -6,6 +6,7 @@ const productApi = baseApi.injectEndpoints({
    
     getProducts: builder.query({
         query: (args) => {
+      
         
           const params = new URLSearchParams();
   
@@ -22,6 +23,20 @@ const productApi = baseApi.injectEndpoints({
           };
         },
       
+      }),
+      getProductsForBooking: builder.query({
+        query: (query) => {
+          if (query?.search) {
+            return `/facility??searchTerm=${query?.search}&page=${query.page}&limit=${query.limit}`;
+          } else if (query?.filter) {
+            `/facility??category=${query?.filter}&page=${query.page}&limit=${query.limit}`;
+          } else if (query?.back) {
+            `/facility??page=${query.page}&limit=${query.limit}`;
+          } else if (query.all) {
+            return "/facility?";
+          }
+          return `/facility??page=${query.page}&limit=${query.limit}`;
+        },
       }),
       createProducts: builder.mutation({
           query: (data) => {
@@ -63,7 +78,7 @@ const productApi = baseApi.injectEndpoints({
         }),
       deleteProducts: builder.mutation({
           query: (data) => {
-            console.log(data?.token , data?.id);
+         
           if (!data?.token) {
             console.log('token not found');
             
@@ -101,5 +116,6 @@ export const {
   useDeleteProductsMutation,
   useCreateProductsMutation,
   useUpdateProductsMutation,
- useGetSingleProductQuery
+ useGetSingleProductQuery,
+ useGetProductsForBookingQuery
 } = productApi;

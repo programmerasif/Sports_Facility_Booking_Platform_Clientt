@@ -11,20 +11,21 @@ import { FormValues } from "@/types/types";
 import { useCreateUserMutation } from "@/redux/feature/auth/authApi";
 import { NavLink, useNavigate} from "react-router-dom";
 import login from '../../assets/login.json'
-import { useAppDispatch } from "@/redux/api/hook";
-import { setUserInfo } from "@/redux/feature/userInfo/userInfoSlice";
+import Swal from "sweetalert2";
+// import { useAppDispatch } from "@/redux/api/hook";
+// import { setUserInfo } from "@/redux/feature/userInfo/userInfoSlice";
 
 const Register: React.FC = () => {
     const [creteUser] = useCreateUserMutation()
   const { register, handleSubmit,watch, formState: { errors } } = useForm<FormValues>();
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   
 
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     try {
-      console.log("Form data:", data?.email);
+     
   
       const API_KEY = "4794790c9ff21535c43001d589261473";
       const file = data.profileImage[0];
@@ -63,23 +64,16 @@ const Register: React.FC = () => {
             image: hostedImage,
             address:data?.address
         }
-        const res = await creteUser(userData)
-        console.log(res);
-        const token = res?.data?.token;
-      const user = {
-        _id: res?.data?.data?._id,
-          name: res?.data?.data?.name,
-          email:res?.data?.data?.email,
-          role:res?.data?.data?.role,
-          image:res?.data?.data?.image,
-          phone:res?.data?.data?.phone,
-          address:res?.data?.data?.address,
-          token:token
-      }
-      navigate('/');
-      dispatch(setUserInfo(user))
-        
+         await creteUser(userData)
+      
+    
 
+      Swal.fire({
+        title: "Sign-up successful",
+        text: "Please login your Account Here",
+        icon: "info"
+      });
+      navigate('/login');
       }
     } catch (error) {
       console.error( error);
@@ -181,7 +175,7 @@ const Register: React.FC = () => {
               <Input
                 id="phone"
                 placeholder="+8801721xxxxxx"
-                type="number"
+                type="text"
                 {...register("phone", { 
                   required: "Phone Number is required",
                  

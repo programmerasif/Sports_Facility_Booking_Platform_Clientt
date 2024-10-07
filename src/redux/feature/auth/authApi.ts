@@ -54,7 +54,7 @@ const authApi = baseApi.injectEndpoints({
     }),
     login: builder.mutation({
       query: (data) => {
-        console.log(data);
+        
         
         return {
           url: "/auth/login",

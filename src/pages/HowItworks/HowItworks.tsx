@@ -30,7 +30,7 @@ const projects = [
     description:
      "After logging in, head over to our facilities page where you can browse all the available sports venues. Use our search filters to narrow down your options based on location, sport, availability, and other preferences. Each facility listing includes photos, descriptions, amenities, and user reviews to help you make an informed decision.",
     src: 'tree.jpg',
-    link: 'https://images.unsplash.com/photo-1605106250963-ffda6d2a4b32?w=500&auto=format&fit=crop&q=60',
+    link: 'https://i.ibb.co.com/njpCb4C/Screenshot-8.png',
     color: '#282d89',
   },
   {
@@ -38,7 +38,7 @@ const projects = [
     description:
       "Once you’ve found the perfect facility, select your preferred date and time for the booking. Our platform shows real-time availability, ensuring you can book the slot that best fits your schedule. You can also see peak and off-peak hours, helping you choose the most convenient time.",
     src: 'water.jpg',
-    link: 'https://images.unsplash.com/photo-1605106901227-991bd663255c?w=500&auto=format&fit=crop',
+    link: 'https://i.ibb.co.com/YPGdJz8/Screenshot-9.png',
     color: '#2d3298',
   },
   {
@@ -46,15 +46,15 @@ const projects = [
     description:
       "With your date and time selected, click on the 'Book Now' button. You’ll be prompted to review your booking details and proceed to payment. We offer multiple payment options, including credit/debit cards, online wallets, and bank transfers. Rest assured, all transactions are secure and encrypted.",
     src: 'house.jpg',
-    link: 'https://images.unsplash.com/photo-1605106715994-18d3fecffb98?w=500&auto=format&fit=crop&q=60',
+    link: 'https://i.ibb.co.com/JmH8mmt/Screenshot-11.png',
     color: '#3137a7',
   },
   {
     title: 'Check-In and Enjoy(step-5)',
     description:
-      "On the day of your booking, simply arrive at the facility a few minutes before your scheduled time. Depending on the facility, you may need to show your booking confirmation to the staff. Enjoy your session, whether it’s a game of tennis, football, or any other sport you love.",
+      "Please payment your amount, On the day of your booking, simply arrive at the facility a few minutes before your scheduled time. Depending on the facility, you may need to show your booking confirmation to the staff. Enjoy your session, whether it’s a game of tennis, football, or any other sport you love.",
     src: 'cactus.jpg',
-    link: 'https://images.unsplash.com/photo-1506792006437-256b665541e2?w=500&auto=format&fit=crop',
+    link: 'https://i.ibb.co.com/svkKftq/Screenshot-12.png',
     color: '#3137a7',
   },
 ]
@@ -132,7 +132,7 @@ export const Card: React.FC<ScrollCardProps> = ({
           scale,
           top: `calc(-5vh + ${i * 25}px)`,
         }}
-        className={`flex flex-col relative -top-[25%] h-[450px] w-full md:w-[70%] rounded-md p-10 origin-top`}
+        className={`flex flex-col relative -top-[25%] h-[500px] xl:h-[450px] w-full md:w-[70%] rounded-md p-10 origin-top`}
       >
         <h2 className=" text-xl md:text-2xl text-center font-semibold">{title}</h2>
         <div className={`flex flex-col-reverse md:flex-row h-full mt-5 gap-2 md:gap-10`}>
@@ -168,15 +168,15 @@ export const Card: React.FC<ScrollCardProps> = ({
           </div>
 
           <div
-            className={`relative w-[50%] h-[30vh] rounded-lg overflow-hidden `}
+            className={`relative w-full md:w-[50%] h-[25vh] xl:h-[30vh] rounded-lg overflow-hidden `}
           >
             <motion.div
-              className={`w-full h-full`}
+              className={`w-full h-full flex justify-center items-center`}
               style={{ scale: imageScale }}
             >
               {/* <Image fill src={url} alt="image" className="object-cover" /> */}
-             <div className='w-full bg-gray-100 flex justify-center h-[30vh] items-center'>
-                <img src={url} alt="" className=''/>
+             <div className='w-full bg-gray-100 flex justify-center  h-[30vh] '>
+                <img src={url} alt="" className='' />
              </div>
             </motion.div>
           </div>

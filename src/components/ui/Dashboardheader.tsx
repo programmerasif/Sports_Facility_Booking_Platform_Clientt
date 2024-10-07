@@ -25,7 +25,7 @@ const Dashboardheader = () => {
         <span className="text-xm text-[#12143D]"> {user?.role =='admin' ? <span className="text-sm">Authority</span> : <span className="text-sm">Customer</span>} </span>
         </div>
         </div> 
-        <div><img src={'https://i.ibb.co/fnfBTSN/Untitled-design-1.png'} alt="" className="w-8 md:w-12 rounded-full ring" /></div> 
+        <div><img src={user?.image ? user?.image : "https://i.ibb.co.com/1fsKYRf/3237472.png"} alt="" className="w-8 md:w-12 rounded-full ring" /></div> 
         </div>
         </div>
     );

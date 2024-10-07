@@ -48,9 +48,9 @@ const DashboardFirstLook = () => {
             </div>
           </div>
         </div>
-        <div className="w-[30%] hidden 2xl:block">
-          <Calendar handlePickDate={function (date: Date): void {
-            console.log(date);
+      <div className="w-[30%] hidden 2xl:block">
+          <Calendar handlePickDate={function (_date: Date): void {
+           
             
             throw new Error("Function not implemented.");
           } } />

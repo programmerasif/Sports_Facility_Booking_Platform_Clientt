@@ -177,7 +177,7 @@ export const SidebarLink = ({
   const handelLogOut = (name:string) =>{
    
     if (name === 'Account Logout') {
-      console.log("i have to log out ");
+     
       dispatch(logOut());
       navigate('/');
     }

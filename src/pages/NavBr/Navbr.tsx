@@ -172,56 +172,80 @@ const Navbar = () => {
           </button>
         </div>
         <div className="flex flex-col space-y-4 p-4">
+        <NavLink
+              to="/"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-[#F7A400] font-bold transition duration-300 bg-gray-50 p-2 rounded-md"
+                  : "text-gray-50 hover:text-[#F7A400] transition duration-300"
+              }
+            >
+              Home
+            </NavLink>
           <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive
-                ? "text-[#F7A400] font-bold bg-gray-50 p-2 rounded transition duration-300"
-                : "text-gray-50 hover:bg-gray-50 hover:text-[#F7A400] p-2 rounded transition duration-300"
-            }
-          >
-            Home
-          </NavLink>
+              to="/contact"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-[#F7A400] font-bold transition duration-300 bg-gray-50 p-2 rounded-md"
+                  : "text-gray-50 hover:text-[#F7A400] transition duration-300"
+              }
+            >
+              Contact
+            </NavLink>
+            <NavLink
+              to="/about-us"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-[#F7A400] font-bold transition duration-300 bg-gray-50 p-2 rounded-md"
+                  : "text-gray-50 hover:text-[#F7A400] transition duration-300"
+              }
+            >
+              About
+            </NavLink>
           <NavLink
-            to="/about"
-            className={({ isActive }) =>
-              isActive
-                ? "text-[#F7A400] font-bold bg-gray-50 p-2 rounded transition duration-300"
-                : "text-gray-50 hover:bg-gray-50 hover:text-[#F7A400] p-2 rounded transition duration-300"
-            }
+              to="/booking-page"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-[#F7A400] bg-gray-50 p-2 rounded-md font-bold transition duration-300"
+                  : "text-gray-50 hover:text-[#F7A400] transition duration-300"
+              }
+            >
+              Booking
+            </NavLink>
+            {
+            user ? 
+            <NavLink
+            to="/dashboard"
+            className='text-white px-6 py-2 rounded-md bg-[#F7A400] transition duration-300 font-bold'
           >
-            About
+            Dashboard
           </NavLink>
-          <NavLink
-            to="/facality"
-            className={({ isActive }) =>
-              isActive
-                ? "text-[#F7A400] font-bold bg-gray-50 p-2 rounded transition duration-300"
-                : "text-gray-50 hover:bg-gray-50 hover:text-[#F7A400] p-2 rounded transition duration-300"
-            }
-          >
-            Facality
-          </NavLink>
-          <NavLink
-            to="/contact"
-            className={({ isActive }) =>
-              isActive
-                ? "text-[#F7A400] font-bold bg-gray-50 p-2 rounded transition duration-300"
-                : "text-gray-50 hover:bg-gray-50 hover:text-[#F7A400] p-2 rounded transition duration-300"
-            }
-          >
-            Contact
-          </NavLink>
-          <NavLink
-            to="/login"
-            className={({ isActive }) =>
-              isActive
-                ? "text-[#F7A400] font-bold bg-gray-50 p-2 rounded transition duration-300"
-                : "text-gray-50 hover:bg-gray-50 hover:text-[#F7A400] p-2 rounded transition duration-300"
-            }
-          >
-            Login
-          </NavLink>
+            :  <div className="flex justify-center items-center gap-4">
+            <div className="flex flex-col justify-start items-start gap-4 w-full">
+            <NavLink
+              to="/register"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-[#F7A400] bg-gray-50 p-2 rounded-md font-bold transition duration-300"
+                  : "text-gray-50  py-1 rounded-md  border-[#F7A400] transition duration-300"
+              }
+            >
+              Register
+            </NavLink>
+            <NavLink
+              to="/login"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-[#F7A400] bg-gray-50 p-2 rounded-md font-bold transition duration-300"
+                  : "text-gray-50 py-1 rounded-md  border-[#F7A400] transition duration-300"
+              }
+            >
+              Login
+            </NavLink>
+            </div>
+           
+            </div>
+           }
         </div>
       </div>
     </nav>

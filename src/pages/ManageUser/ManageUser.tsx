@@ -32,8 +32,11 @@ import { useState } from "react";
           { name: "limit", value: "4" },
           { name: "sort", value: 'name' },
         ],
+      },
+      {
+        pollingInterval: 1000,
       })
-  console.log(data?.data?.users);
+  
   
   const handlePaginatePrev = () =>{
     setPage(page - 1)

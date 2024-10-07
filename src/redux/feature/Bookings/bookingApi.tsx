@@ -8,7 +8,7 @@ const bookingApi = baseApi.injectEndpoints({
     getAllBookings: builder.query({
       
         query: ({ token, args }) => {
-          console.log(token);
+      
           
           
           if (!token) {
@@ -40,7 +40,7 @@ const bookingApi = baseApi.injectEndpoints({
     checkAvailableSlots: builder.mutation({
       
         query: ({ token, date,facilityId}) => {
-          console.log(token);
+         
           
         
           
@@ -101,7 +101,7 @@ const bookingApi = baseApi.injectEndpoints({
     usersBookings: builder.query({
       
       query: ({ token, args }) => {
-        console.log(token);
+        
         
         
         if (!token) {

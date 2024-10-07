@@ -14,6 +14,7 @@ export const HoverEffect = ({
     description: string;
     types: string[];
     image: string;
+    pricePerHour:string
     id:string
   }[];
   className?: string;
@@ -31,7 +32,9 @@ console.log(id);
         className
       )}
     >
-      {items.map((item, idx) => (
+      {items.length == 0 ? <div className="flex justify-center items-center text-center w-full">
+        No facility Available 
+      </div> : items.map((item, idx) => (
         <a
           key={item?.title}
           className="relative group  block p-2 h-full w-full"
@@ -78,7 +81,7 @@ console.log(id);
                
               </NavLink>
               <div className="flex justify-center items-center gap-2 font-bold text-[#F7A400]">
-                <span className="">${"50"} </span>
+                <span className="">${item?.pricePerHour} </span>
                 <span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
