@@ -42,6 +42,16 @@ const Navbar = () => {
               Home
             </NavLink>
             <NavLink
+              to="/booking-page"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-[#F7A400] font-bold transition duration-300"
+                  : "text-gray-50 hover:text-[#F7A400] transition duration-300"
+              }
+            >
+              Facilities
+            </NavLink>
+            <NavLink
               to="/contact"
               className={({ isActive }) =>
                 isActive
@@ -61,16 +71,7 @@ const Navbar = () => {
             >
               About
             </NavLink>
-            <NavLink
-              to="/booking-page"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-[#F7A400] font-bold transition duration-300"
-                  : "text-gray-50 hover:text-[#F7A400] transition duration-300"
-              }
-            >
-              Booking
-            </NavLink>
+            
             
            {
             user ? 
@@ -182,6 +183,16 @@ const Navbar = () => {
             >
               Home
             </NavLink>
+            <NavLink
+              to="/booking-page"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-[#F7A400] bg-gray-50 p-2 rounded-md font-bold transition duration-300"
+                  : "text-gray-50 hover:text-[#F7A400] transition duration-300"
+              }
+            >
+              Facilities
+            </NavLink>
           <NavLink
               to="/contact"
               className={({ isActive }) =>
@@ -202,16 +213,7 @@ const Navbar = () => {
             >
               About
             </NavLink>
-          <NavLink
-              to="/booking-page"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-[#F7A400] bg-gray-50 p-2 rounded-md font-bold transition duration-300"
-                  : "text-gray-50 hover:text-[#F7A400] transition duration-300"
-              }
-            >
-              Booking
-            </NavLink>
+          
             {
             user ? 
             <NavLink

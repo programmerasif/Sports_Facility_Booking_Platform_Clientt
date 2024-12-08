@@ -152,7 +152,7 @@ export const CardTitle = ({
     >
       <div className="flex justify-start items-start flex-col gap-2">
         <span>
-          <img src={imageSrc} alt="" className=" rounded-md" />
+          <img src={imageSrc} alt="" className=" rounded-md  max-h-[250px]" />
         </span>
         <span className="font-bold text-[18px]">{children[0]}</span>
       </div>

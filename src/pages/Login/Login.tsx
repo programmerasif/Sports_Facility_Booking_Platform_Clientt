@@ -13,6 +13,8 @@ import Lottie from "lottie-react";
 import login from '../../assets/login.json'
 import Swal from "sweetalert2";
 
+import GoogleLogin from "@/ComoneComponent/GoogleLogin/GoogleLogin";
+
 
 const Login: React.FC = () => {
   const [signIn] = useLoginMutation();
@@ -131,7 +133,9 @@ const Login: React.FC = () => {
               <BottomGradient />
             </button>
           </form>
+          
           <p className="text-neutral-600 text-sm max-w-sm mt-2 dark:text-neutral-300">Dont have an Account? <NavLink to='/register' className="text-blue-500 underline">Refister</NavLink></p>
+          <GoogleLogin />
         </div>
       </div>
       </div>

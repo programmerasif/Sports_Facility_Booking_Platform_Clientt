@@ -14,7 +14,7 @@ const DashboardInterface = () => {
     return (
         <div className="flex flex-col w-full">
             <Dashboardheader />
-            <div className="m-5">
+            <div className="m-5 overflow-y-auto">
                 {/* Explicitly check both paths */}
                 {
                     locationPath === "/dashboard" || locationPath === "/dashboard/" 
